@@ -1,5 +1,41 @@
+<!DOCTYPE html>
+
 <html>
+
+<head>
+
+<title>Referendum Map of Muenster</title>
+
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+<style>
+#map {
+    width: 1290px;
+    height:655px;
+}
+</style>
+
+</head>
+
 <body>
-<h1> test</h1>
+
+    <div id="map"></div>
+
+<script>
+
+    var map = L.map('map',{
+    center: [50, 10],
+    zoom: 6
+    });
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+</script>
+
 </body>
+
 </html>
