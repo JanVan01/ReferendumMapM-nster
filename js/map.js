@@ -8,3 +8,4 @@
  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
  }).addTo(map);
 
+ var sidebar = L.control.sidebar('sidebar').addTo(map);
