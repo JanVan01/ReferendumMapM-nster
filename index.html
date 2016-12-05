@@ -1,65 +1,61 @@
-
-
 <!DOCTYPE html>
+
 
 <html>
 
 <head>
 
-<title>Referendum Map of Muenster</title>
+    <title>Referendum Map of Muenster</title>
 
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-<link rel="stylesheet" href="css/leaflet-sidebar.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="css/leaflet-sidebar.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-<script src="js/leaflet-sidebar.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="js/leaflet-sidebar.min.js"></script>
 </head>
+
 <body>
-  <div id="sidebar" class="sidebar collapsed">
-      <!-- Nav tabs -->
-      <div class="sidebar-tabs">
-          <ul role="tablist">
-              <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-              <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-              <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-          </ul>
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="#help" role="tab"><i class="fa fa-question"></i></a></li>
+                <li><a href="#contact" role="tab"><i class="fa fa-envelope"></i></a></li>
+            </ul>
 
-          <ul role="tablist">
-              <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
-          </ul>
-      </div>
+            <ul role="tablist">
+                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+            </ul>
+        </div>
 
-      <!-- Tab panes -->
-      <div class="sidebar-content">
-          <div class="sidebar-pane" id="home">
-              <h1 class="sidebar-header">
-                  sidebar-v2
-                  <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-              </h1>
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+            <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">Home<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <h2>Referendum Map Münster</h2>
+                <p>Welcome to the Referendum Map Münster here you will be provided with infomation regarding the recent referendum that took place in Münster to ...</p>
+            </div>
 
-              <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
+            <div class="sidebar-pane" id="help">
+                <h1 class="sidebar-header">Help<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
 
-              
-          </div>
+            <div class="sidebar-pane" id="contact">
+                <h1 class="sidebar-header">Contact<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
 
-          <div class="sidebar-pane" id="profile">
-              <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-          </div>
+            <div class="sidebar-pane" id="settings">
+                <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+        </div>
+    </div>
 
-          <div class="sidebar-pane" id="messages">
-              <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-          </div>
-
-          <div class="sidebar-pane" id="settings">
-              <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-          </div>
-      </div>
-  </div>
-
-  <div id="map" class="sidebar-map"></div>
+    <div id="map" class="sidebar-map"></div>
 
 </body>
 <script src="js/map.js"></script>
+
 </html>
