@@ -49,7 +49,8 @@ function sparql2GeoJSON(input) {
     }
     return output;
 }
-    
+
+
 function reservesStyle(feature) {
    return {
        fillColor: 'green',
@@ -66,5 +67,3 @@ function onEachFeature(feature, layer){
         layer.bindPopup(popupContent);
     }		
 }
-
-
