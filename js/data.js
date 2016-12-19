@@ -26,7 +26,7 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function(data) {
-            L.geoJson(sparql2GeoJSON(data)).addTo(map);
+            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle}).addTo(map);
         }
     })
 });
@@ -48,4 +48,14 @@ function sparql2GeoJSON(input) {
         output.push(new_entry);
     }
     return output;
+}
+
+function reservesStyle(feature) {
+    return {
+        fillColor: 'green',
+        weight: 0,
+        opacity: 1,
+        color: 'white',
+        fillOpacity: 0.7
+    };
 }
