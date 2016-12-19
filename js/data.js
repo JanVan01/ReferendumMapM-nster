@@ -1,15 +1,20 @@
 var query = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
-PREFIX gn: <http://www.geonames.org/ontology#>\
+PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
 SELECT DISTINCT\
-?name ?pop ?wkt \
+?name ?total ?yes ?no ?wkt \
 WHERE {\
 GRAPH <http://course.geoinfo2016.org/G1>{\
-?district foaf:name ?name;\
-gn:population ?pop;\
+?district rdf:type ref:District;\
+foaf:name ?name;\
+ref:hasTotalVoters ?total;\
+ref:hasYesVotes ?yes;\
+ref:hasNoVotes ?no;\
 geo:hasGeometry ?geo.\
 ?geo geo:hasSerialization ?wkt.\
 }}';
+
 var url = 'http://giv-lodumdata.uni-muenster.de:8282/parliament/sparql'
 
 $(document).ready(function() {
@@ -37,7 +42,9 @@ function sparql2GeoJSON(input) {
         };
         new_entry.geometry = $.geo.WKT.parse(entry.wkt.value);
         new_entry.properties.name = entry.name.value;
-        new_entry.properties.population = entry.pop.value;
+        new_entry.properties.totalVoters = entry.name.totalVoters;
+        new_entry.properties.yes = entry.name.yes;
+        new_entry.properties.no = entry.name.no;
         output.push(new_entry);
     }
     return output;
