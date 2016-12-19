@@ -26,7 +26,7 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function(data) {
-            L.geoJson(sparql2GeoJSON(data)).addTo(map);
+            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle, onEachFeature: onEachFeature}).addTo(map);
         }
     })
 });
@@ -49,3 +49,22 @@ function sparql2GeoJSON(input) {
     }
     return output;
 }
+    
+function reservesStyle(feature) {
+   return {
+       fillColor: 'green',
+       weight: 0,
+       opacity: 1,
+       color: 'white',
+       fillOpacity: 0.7
+   };  
+}
+
+function onEachFeature(feature, layer){
+    if (feature.properties && feature.properties.name) {
+        var popupContent = "This is: " + feature.properties.name;
+        layer.bindPopup(popupContent);
+    }		
+}
+
+
