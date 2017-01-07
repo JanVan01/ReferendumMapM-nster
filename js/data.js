@@ -26,7 +26,7 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle, onEachFeature: onEachFeature}).addTo(map);
+            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle, onEachFeature: onEachFeature, highlightFeature: highlightFeature, zoomToFeature: zoomToFeature, resetHighlight: resetHighlight}).addTo(map);
         }
     })
 });
@@ -54,16 +54,56 @@ function sparql2GeoJSON(input) {
 function reservesStyle(feature) {
    return {
        fillColor: 'green',
-       weight: 0,
+       weight: 2,
        opacity: 1,
        color: 'white',
        fillOpacity: 0.7
    };  
 }
 
+function highlightFeature(feature){
+    var layer = feature.target;
+    layer.setStyle({
+        weight : 2,
+        color : 'black',
+        fillColor : 'green',
+        fillOpacity : 0.6
+    }
+    );
+    layer.bringToFront();	
+}
+
+function zoomToFeature(feature){
+				map.fitBounds(feature.target.getBounds());
+			}
+
+function resetHighlight(feature){
+    var resetLayer = feature.target;
+    resetLayer.setStyle({
+        fillColor: 'green',
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        fillOpacity: 0.7
+    }
+    );
+}
+
 function onEachFeature(feature, layer){
-    if (feature.properties && feature.properties.name) {
-        var popupContent = "This is: " + feature.properties.name;
-        layer.bindPopup(popupContent);
-    }		
+    if (feature.properties) {
+        var popupContent = [];
+        popupContent.push("<b>District: </b>" + feature.properties.name)
+        popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
+        popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
+        popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
+        layer.bindPopup("<p>" + popupContent.join("") + "</p>");
+    }
+    
+    layer.on(
+        {
+            mouseover : highlightFeature,
+            mouseout : resetHighlight,
+            click : zoomToFeature
+        }
+    );
 }
