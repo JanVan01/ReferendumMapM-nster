@@ -53,7 +53,7 @@ function sparql2GeoJSON(input) {
 
 function reservesStyle(feature) {
    return {
-       fillColor: 'green',
+       fillColor: feature.properties.no > feature.properties.yes ? 'red' : 'green',
        weight: 2,
        opacity: 1,
        color: 'white',
@@ -66,7 +66,6 @@ function highlightFeature(feature){
     layer.setStyle({
         weight : 2,
         color : 'black',
-        fillColor : 'green',
         fillOpacity : 0.6
     }
     );
@@ -80,7 +79,6 @@ function zoomToFeature(feature){
 function resetHighlight(feature){
     var resetLayer = feature.target;
     resetLayer.setStyle({
-        fillColor: 'green',
         weight: 2,
         opacity: 1,
         color: 'white',
