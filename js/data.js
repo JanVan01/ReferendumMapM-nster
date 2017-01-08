@@ -42,9 +42,9 @@ function sparql2GeoJSON(input) {
         };
         new_entry.geometry = $.geo.WKT.parse(entry.wkt.value);
         new_entry.properties.name = entry.name.value;
-        new_entry.properties.totalVoters = entry.name.totalVoters;
-        new_entry.properties.yes = entry.name.yes;
-        new_entry.properties.no = entry.name.no;
+        new_entry.properties.totalVoters = entry.total.value;
+        new_entry.properties.yes = entry.yes.value;
+        new_entry.properties.no = entry.no.value;
         output.push(new_entry);
     }
     return output;
@@ -58,7 +58,7 @@ function reservesStyle(feature) {
        opacity: 1,
        color: 'white',
        fillOpacity: 0.7
-   };  
+   };
 }
 
 function highlightFeature(feature){
@@ -70,7 +70,7 @@ function highlightFeature(feature){
         fillOpacity : 0.6
     }
     );
-    layer.bringToFront();	
+    layer.bringToFront();
 }
 
 function zoomToFeature(feature){
@@ -98,7 +98,7 @@ function onEachFeature(feature, layer){
         popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
         layer.bindPopup("<p>" + popupContent.join("") + "</p>");
     }
-    
+
     layer.on(
         {
             mouseover : highlightFeature,
