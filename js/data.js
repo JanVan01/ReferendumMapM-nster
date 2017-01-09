@@ -26,7 +26,7 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle}).addTo(map);
+            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle, onEachFeature: onEachFeature, highlightFeature: highlightFeature, zoomToFeature: zoomToFeature, resetHighlight: resetHighlight}).addTo(map);
         }
     })
 });
@@ -42,20 +42,66 @@ function sparql2GeoJSON(input) {
         };
         new_entry.geometry = $.geo.WKT.parse(entry.wkt.value);
         new_entry.properties.name = entry.name.value;
-        new_entry.properties.totalVoters = entry.name.totalVoters;
-        new_entry.properties.yes = entry.name.yes;
-        new_entry.properties.no = entry.name.no;
+        new_entry.properties.totalVoters = entry.total.value;
+        new_entry.properties.yes = entry.yes.value;
+        new_entry.properties.no = entry.no.value;
         output.push(new_entry);
     }
     return output;
 }
 
+
 function reservesStyle(feature) {
-    return {
-        fillColor: 'green',
-        weight: 0,
+   return {
+       fillColor: feature.properties.no > feature.properties.yes ? 'red' : 'green',
+       weight: 2,
+       opacity: 1,
+       color: 'white',
+       fillOpacity: 0.7
+   };
+}
+
+function highlightFeature(feature){
+    var layer = feature.target;
+    layer.setStyle({
+        weight : 2,
+        color : 'black',
+        fillOpacity : 0.6
+    }
+    );
+    layer.bringToFront();
+}
+
+function zoomToFeature(feature){
+				map.fitBounds(feature.target.getBounds());
+			}
+
+function resetHighlight(feature){
+    var resetLayer = feature.target;
+    resetLayer.setStyle({
+        weight: 2,
         opacity: 1,
         color: 'white',
         fillOpacity: 0.7
-    };
+    }
+    );
+}
+
+function onEachFeature(feature, layer){
+    if (feature.properties) {
+        var popupContent = [];
+        popupContent.push("<b>District: </b>" + feature.properties.name)
+        popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
+        popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
+        popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
+        layer.bindPopup("<p>" + popupContent.join("") + "</p>");
+    }
+
+    layer.on(
+        {
+            mouseover : highlightFeature,
+            mouseout : resetHighlight,
+            click : zoomToFeature
+        }
+    );
 }
