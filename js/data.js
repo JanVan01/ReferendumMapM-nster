@@ -26,7 +26,7 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle, onEachFeature: onEachFeature, highlightFeature: highlightFeature, zoomToFeature: zoomToFeature, resetHighlight: resetHighlight}).addTo(map);
+            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle, onEachFeature: onEachFeature, getOpacity: getOpacity, zoomToFeature: zoomToFeature}).addTo(map);
         }
     })
 });
@@ -51,41 +51,30 @@ function sparql2GeoJSON(input) {
 }
 
 
+
 function reservesStyle(feature) {
    return {
        fillColor: feature.properties.no > feature.properties.yes ? 'red' : 'green',
        weight: 2,
        opacity: 1,
        color: 'white',
-       fillOpacity: 0.7
+       fillOpacity: getOpacity(feature.properties.totalVoters)
    };
 }
 
-function highlightFeature(feature){
-    var layer = feature.target;
-    layer.setStyle({
-        weight : 2,
-        color : 'black',
-        fillOpacity : 0.6
-    }
-    );
-    layer.bringToFront();
-}
+function getOpacity(voters) {
+    return voters<6.000 ? 0.3:
+           voters>6.000 && voters<7.000 ? 0.5:
+           voters>7.000 && voters<8.000 ? 0.7:
+           voters>8.000 && voters<9.000 ? 0.85:
+                                        1.0;
+	}
 
 function zoomToFeature(feature){
 				map.fitBounds(feature.target.getBounds());
 			}
 
-function resetHighlight(feature){
-    var resetLayer = feature.target;
-    resetLayer.setStyle({
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        fillOpacity: 0.7
-    }
-    );
-}
+
 
 function onEachFeature(feature, layer){
     if (feature.properties) {
@@ -99,8 +88,6 @@ function onEachFeature(feature, layer){
 
     layer.on(
         {
-            mouseover : highlightFeature,
-            mouseout : resetHighlight,
             click : zoomToFeature
         }
     );
