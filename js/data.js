@@ -18,6 +18,7 @@ geo:hasGeometry ?geo.\
 var url = 'http://giv-lodumdata.uni-muenster.de:8282/parliament/sparql'
 
 $(document).ready(function() {
+           
     $.ajax({
         url: url,
         data: {
@@ -64,16 +65,16 @@ function reservesStyle(feature) {
 function highlightFeature(feature){
     var layer = feature.target;
     layer.setStyle({
-        weight : 2,
+        weight : 4,
         color : 'black',
-        fillOpacity : 0.6
+        fillOpacity : 0.7
     }
     );
     layer.bringToFront();
 }
 
 function zoomToFeature(feature){
-				map.fitBounds(feature.target.getBounds());
+				map.fitBounds(feature.target.getBounds(onEachFeature));
 			}
 
 function resetHighlight(feature){
@@ -86,22 +87,53 @@ function resetHighlight(feature){
     }
     );
 }
-
+       
 function onEachFeature(feature, layer){
-    if (feature.properties) {
-        var popupContent = [];
-        popupContent.push("<b>District: </b>" + feature.properties.name)
-        popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
-        popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
-        popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
-        layer.bindPopup("<p>" + popupContent.join("") + "</p>");
-    }
-
-    layer.on(
+     layer.on(
         {
             mouseover : highlightFeature,
             mouseout : resetHighlight,
-            click : zoomToFeature
+            click : zoomToFeature,
         }
     );
+    
+    function chart(){
+      var testdata = [
+        {key: "YES", y: feature.properties.yes, color: "green"},
+        {key: "NO", y: feature.properties.no, color: "red"},
+    ];
+        
+    nv.addGraph(function() {
+        var chart = nv.models.pieChart()
+                .x(function(d) { return d.key; })
+                .y(function(d) { return d.y; })
+                .width(300)
+                .height(300)
+                .showLegend(false)
+                .showTooltipPercent(true);
+
+        d3.select("#test1")
+            .datum(testdata)
+            .transition().duration(1200)
+            .attr('width', 100)
+            .attr('height', 100)
+            .call(chart);
+
+        return chart;
+    });
+        
+}
+        var popupContent = [];
+        popupContent.push("<b> District: </b>" + "<b>" + feature.properties.name + "</b>")
+        popupContent.push('<svg id="test1" width = 25 height = 25></svg>')
+        popupContent.push("<b>Number of voters: </b>" + feature.properties.totalVoters)
+        layer.bindPopup("<p>" + popupContent.join("") + "</p>");
+    
+    layer.on(
+        {
+            click : chart,
+        }
+    );
+
+   
 }
