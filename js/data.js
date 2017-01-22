@@ -6,12 +6,15 @@ SELECT DISTINCT\
 ?name ?total ?yes ?no ?invalid ?wkt \
 WHERE {\
 GRAPH <http://course.geoinfo2016.org/G1>{\
+?parent rdf:type ref:District;\
+ref:hasSubDistrict ?district.\
 ?district rdf:type ref:District;\
 foaf:name ?name;\
 ref:hasTotalVoters ?total;\
 ref:hasYesVotes ?yes;\
 ref:hasNoVotes ?no;\
 ref:hasInvalidVotes ?invalid;\
+ref:hasSubDistrict ?child;\
 geo:hasGeometry ?geo.\
 ?geo geo:hasSerialization ?wkt.\
 }}';
