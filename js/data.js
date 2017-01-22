@@ -26,7 +26,7 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle, onEachFeature: onEachFeature, getOpacity: getOpacity, zoomToFeature: zoomToFeature}).addTo(map);
+            L.geoJson(sparql2GeoJSON(data), {style : getStyle, onEachFeature: onEachFeature}).addTo(map);
         }
     })
 });
@@ -52,7 +52,7 @@ function sparql2GeoJSON(input) {
 
 
 
-function reservesStyle(feature) {
+function getStyle(feature) {
    return {
        fillColor: feature.properties.no > feature.properties.yes ? 'red' : 'green',
        weight: 2,
