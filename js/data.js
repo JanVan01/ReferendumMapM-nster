@@ -35,17 +35,17 @@ function sparql2GeoJSON(input) {
     var output = [];
     for (i in input.results.bindings) {
         var entry = input.results.bindings[i];
-        var new_entry = {
+        var feature = {
             type: "Feature",
             geometry: {},
             properties: {}
         };
-        new_entry.geometry = $.geo.WKT.parse(entry.wkt.value);
-        new_entry.properties.name = entry.name.value;
-        new_entry.properties.totalVoters = entry.total.value;
-        new_entry.properties.yes = entry.yes.value;
-        new_entry.properties.no = entry.no.value;
-        output.push(new_entry);
+        feature.geometry = $.geo.WKT.parse(entry.wkt.value);
+        feature.properties.name = entry.name.value;
+        feature.properties.totalVoters = parseInt(entry.total.value);
+        feature.properties.yes = parseInt(entry.yes.value);
+        feature.properties.no = parseInt(entry.no.value);
+        output.push(feature);
     }
     return output;
 }
@@ -54,25 +54,26 @@ function sparql2GeoJSON(input) {
 
 function getStyle(feature) {
    return {
-       fillColor: feature.properties.no > feature.properties.yes ? 'red' : 'green',
+       fillColor: getFillColor(feature),
        weight: 2,
        opacity: 1,
        color: 'white',
-       fillOpacity: getOpacity(feature.properties.totalVoters)
+       fillOpacity: getOpacity(feature)
    };
 }
 
-function getOpacity(voters) {
-    return voters<6.000 ? 0.3:
-           voters>6.000 && voters<7.000 ? 0.5:
-           voters>7.000 && voters<8.000 ? 0.7:
-           voters>8.000 && voters<9.000 ? 0.85:
-                                        1.0;
-	}
+function getFillColor(feature){
+  return feature.properties.no > feature.properties.yes ? 'red' : 'green';
+
+}
+
+function getOpacity(feature) {
+    return (feature.properties.no + feature.properties.yes)*3/feature.properties.totalVoters;
+}
 
 function zoomToFeature(feature){
-				map.fitBounds(feature.target.getBounds());
-			}
+  map.fitBounds(feature.target.getBounds());
+}
 
 
 
