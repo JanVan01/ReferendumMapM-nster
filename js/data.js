@@ -89,25 +89,22 @@ function onEachFeature(feature, layer){
     );
 
     function chart(){
-      var testdata = [
-        {key: "YES", y: feature.properties.yes, color: "green"},
-        {key: "NO", y: feature.properties.no, color: "red"},
+      var data = [
+        {key: "Yes", value: feature.properties.yes, color: "green"},
+        {key: "No", value: feature.properties.no, color: "red"},
+        {key: "Invalid", value: feature.properties.invalid, color: "grey"}
     ];
 
     nv.addGraph(function() {
         var chart = nv.models.pieChart()
                 .x(function(d) { return d.key; })
-                .y(function(d) { return d.y; })
-                .width(300)
-                .height(300)
-                .showLegend(false)
+                .y(function(d) { return d.value; })
+                .showLegend(true)
                 .showTooltipPercent(true);
 
-        d3.select("#test1")
-            .datum(testdata)
+        d3.select(".participation_chart")
+            .datum(data)
             .transition().duration(1200)
-            .attr('width', 100)
-            .attr('height', 100)
             .call(chart);
 
         return chart;
@@ -116,7 +113,7 @@ function onEachFeature(feature, layer){
 }
         var popupContent = [];
         popupContent.push("<b>District: </b>" + feature.properties.name)
-        popupContent.push('<svg id="test1" width = 25 height = 25></svg>')
+        popupContent.push('<svg class="participation_chart" width=100 height =100></svg>')
         popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
         popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
         popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
