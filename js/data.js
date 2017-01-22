@@ -3,14 +3,18 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
 PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
 SELECT DISTINCT\
-?name ?total ?yes ?no ?wkt \
+?name ?total ?yes ?no ?invalid ?wkt \
 WHERE {\
 GRAPH <http://course.geoinfo2016.org/G1>{\
+?parent rdf:type ref:District;\
+ref:hasSubDistrict ?district.\
 ?district rdf:type ref:District;\
 foaf:name ?name;\
 ref:hasTotalVoters ?total;\
 ref:hasYesVotes ?yes;\
 ref:hasNoVotes ?no;\
+ref:hasInvalidVotes ?invalid;\
+ref:hasSubDistrict ?child;\
 geo:hasGeometry ?geo.\
 ?geo geo:hasSerialization ?wkt.\
 }}';
@@ -26,7 +30,7 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle, onEachFeature: onEachFeature, highlightFeature: highlightFeature, zoomToFeature: zoomToFeature, resetHighlight: resetHighlight}).addTo(map);
+            L.geoJson(sparql2GeoJSON(data), {style : getStyle, onEachFeature: onEachFeature}).addTo(map);
         }
     })
 });
@@ -35,57 +39,48 @@ function sparql2GeoJSON(input) {
     var output = [];
     for (i in input.results.bindings) {
         var entry = input.results.bindings[i];
-        var new_entry = {
+        var feature = {
             type: "Feature",
             geometry: {},
             properties: {}
         };
-        new_entry.geometry = $.geo.WKT.parse(entry.wkt.value);
-        new_entry.properties.name = entry.name.value;
-        new_entry.properties.totalVoters = entry.total.value;
-        new_entry.properties.yes = entry.yes.value;
-        new_entry.properties.no = entry.no.value;
-        output.push(new_entry);
+        feature.geometry = $.geo.WKT.parse(entry.wkt.value);
+        feature.properties.name = entry.name.value;
+        feature.properties.totalVoters = parseInt(entry.total.value);
+        feature.properties.yes = parseInt(entry.yes.value);
+        feature.properties.no = parseInt(entry.no.value);
+        feature.properties.invalid = parseInt(entry.invalid.value);
+        output.push(feature);
     }
     return output;
 }
 
 
-function reservesStyle(feature) {
+
+function getStyle(feature) {
    return {
-       fillColor: feature.properties.no > feature.properties.yes ? 'red' : 'green',
+       fillColor: getFillColor(feature),
        weight: 2,
        opacity: 1,
        color: 'white',
-       fillOpacity: 0.7
+       fillOpacity: getOpacity(feature)
    };
 }
 
-function highlightFeature(feature){
-    var layer = feature.target;
-    layer.setStyle({
-        weight : 2,
-        color : 'black',
-        fillOpacity : 0.6
-    }
-    );
-    layer.bringToFront();
+function getFillColor(feature){
+  return feature.properties.no > feature.properties.yes ? 'red' : 'green';
+
+}
+
+function getOpacity(feature) {
+    return (feature.properties.no + feature.properties.yes + feature.properties.invalid)*3/feature.properties.totalVoters;
 }
 
 function zoomToFeature(feature){
-				map.fitBounds(feature.target.getBounds());
-			}
-
-function resetHighlight(feature){
-    var resetLayer = feature.target;
-    resetLayer.setStyle({
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        fillOpacity: 0.7
-    }
-    );
+  map.fitBounds(feature.target.getBounds());
 }
+
+
 
 function onEachFeature(feature, layer){
     if (feature.properties) {
@@ -94,13 +89,12 @@ function onEachFeature(feature, layer){
         popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
         popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
         popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
+        popupContent.push("<b><br/>Invalid votes: </b>" + feature.properties.invalid)
         layer.bindPopup("<p>" + popupContent.join("") + "</p>");
     }
 
     layer.on(
         {
-            mouseover : highlightFeature,
-            mouseout : resetHighlight,
             click : zoomToFeature
         }
     );
