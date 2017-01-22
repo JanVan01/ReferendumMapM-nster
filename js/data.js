@@ -3,14 +3,18 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
 PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
 SELECT DISTINCT\
-?name ?total ?yes ?no ?wkt \
+?name ?total ?yes ?no ?invalid ?wkt \
 WHERE {\
 GRAPH <http://course.geoinfo2016.org/G1>{\
+?parent rdf:type ref:District;\
+ref:hasSubDistrict ?district.\
 ?district rdf:type ref:District;\
 foaf:name ?name;\
 ref:hasTotalVoters ?total;\
 ref:hasYesVotes ?yes;\
 ref:hasNoVotes ?no;\
+ref:hasInvalidVotes ?invalid;\
+ref:hasSubDistrict ?child;\
 geo:hasGeometry ?geo.\
 ?geo geo:hasSerialization ?wkt.\
 }}';
@@ -18,7 +22,7 @@ geo:hasGeometry ?geo.\
 var url = 'http://giv-lodumdata.uni-muenster.de:8282/parliament/sparql'
 
 $(document).ready(function() {
-           
+
     $.ajax({
         url: url,
         data: {
@@ -27,7 +31,7 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {style : reservesStyle, onEachFeature: onEachFeature, highlightFeature: highlightFeature, zoomToFeature: zoomToFeature, resetHighlight: resetHighlight}).addTo(map);
+            L.geoJson(sparql2GeoJSON(data), {style : getStyle, onEachFeature: onEachFeature}).addTo(map);
         }
     })
 });
@@ -36,58 +40,47 @@ function sparql2GeoJSON(input) {
     var output = [];
     for (i in input.results.bindings) {
         var entry = input.results.bindings[i];
-        var new_entry = {
+        var feature = {
             type: "Feature",
             geometry: {},
             properties: {}
         };
-        new_entry.geometry = $.geo.WKT.parse(entry.wkt.value);
-        new_entry.properties.name = entry.name.value;
-        new_entry.properties.totalVoters = entry.total.value;
-        new_entry.properties.yes = entry.yes.value;
-        new_entry.properties.no = entry.no.value;
-        output.push(new_entry);
+        feature.geometry = $.geo.WKT.parse(entry.wkt.value);
+        feature.properties.name = entry.name.value;
+        feature.properties.totalVoters = parseInt(entry.total.value);
+        feature.properties.yes = parseInt(entry.yes.value);
+        feature.properties.no = parseInt(entry.no.value);
+        feature.properties.invalid = parseInt(entry.invalid.value);
+        output.push(feature);
     }
     return output;
 }
 
 
-function reservesStyle(feature) {
+
+function getStyle(feature) {
    return {
-       fillColor: feature.properties.no > feature.properties.yes ? 'red' : 'green',
+       fillColor: getFillColor(feature),
        weight: 2,
        opacity: 1,
        color: 'white',
-       fillOpacity: 0.7
+       fillOpacity: getOpacity(feature)
    };
 }
 
-function highlightFeature(feature){
-    var layer = feature.target;
-    layer.setStyle({
-        weight : 4,
-        color : 'black',
-        fillOpacity : 0.7
-    }
-    );
-    layer.bringToFront();
+function getFillColor(feature){
+  return feature.properties.no > feature.properties.yes ? 'red' : 'green';
+
+}
+
+function getOpacity(feature) {
+    return (feature.properties.no + feature.properties.yes + feature.properties.invalid)*3/feature.properties.totalVoters;
 }
 
 function zoomToFeature(feature){
-				map.fitBounds(feature.target.getBounds(onEachFeature));
-			}
-
-function resetHighlight(feature){
-    var resetLayer = feature.target;
-    resetLayer.setStyle({
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        fillOpacity: 0.7
-    }
-    );
+  map.fitBounds(feature.target.getBounds());
 }
-       
+
 function onEachFeature(feature, layer){
      layer.on(
         {
@@ -96,13 +89,13 @@ function onEachFeature(feature, layer){
             click : zoomToFeature,
         }
     );
-    
+
     function chart(){
       var testdata = [
         {key: "YES", y: feature.properties.yes, color: "green"},
         {key: "NO", y: feature.properties.no, color: "red"},
     ];
-        
+
     nv.addGraph(function() {
         var chart = nv.models.pieChart()
                 .x(function(d) { return d.key; })
@@ -121,19 +114,22 @@ function onEachFeature(feature, layer){
 
         return chart;
     });
-        
+
 }
         var popupContent = [];
-        popupContent.push("<b> District: </b>" + "<b>" + feature.properties.name + "</b>")
+        popupContent.push("<b>District: </b>" + feature.properties.name)
         popupContent.push('<svg id="test1" width = 25 height = 25></svg>')
-        popupContent.push("<b>Number of voters: </b>" + feature.properties.totalVoters)
+        popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
+        popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
+        popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
+        popupContent.push("<b><br/>Invalid votes: </b>" + feature.properties.invalid)
         layer.bindPopup("<p>" + popupContent.join("") + "</p>");
-    
+
     layer.on(
         {
             click : chart,
         }
     );
 
-   
+
 }
