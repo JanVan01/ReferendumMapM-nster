@@ -31,7 +31,10 @@ $(document).ready(function() {
         },
         dataType: 'json',
         success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {style : getStyle, onEachFeature: onEachFeature}).addTo(map);
+            L.geoJson(sparql2GeoJSON(data), {
+                style: getStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
         }
     })
 });
@@ -59,72 +62,72 @@ function sparql2GeoJSON(input) {
 
 
 function getStyle(feature) {
-   return {
-       fillColor: getFillColor(feature),
-       weight: 2,
-       opacity: 1,
-       color: 'white',
-       fillOpacity: getOpacity(feature)
-   };
+    return {
+        fillColor: getFillColor(feature),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        fillOpacity: getOpacity(feature)
+    };
 }
 
-function getFillColor(feature){
-  return feature.properties.no > feature.properties.yes ? 'red' : 'green';
-
+function getFillColor(feature) {
+    return feature.properties.no > feature.properties.yes ? 'red' : 'green';
 }
 
 function getOpacity(feature) {
-    return (feature.properties.no + feature.properties.yes + feature.properties.invalid)*3/feature.properties.totalVoters;
+    return (feature.properties.no + feature.properties.yes + feature.properties.invalid) * 3 / feature.properties.totalVoters;
 }
 
-function zoomToFeature(feature){
-  map.fitBounds(feature.target.getBounds());
+function zoomToFeature(feature) {
+    map.fitBounds(feature.target.getBounds());
 }
 
-function onEachFeature(feature, layer){
-     layer.on(
-        {
-            click : zoomToFeature,
-        }
-    );
+function onEachFeature(feature, layer) {
+    var popupContent = [];
+    popupContent.push("<b>District: </b>" + feature.properties.name)
+    popupContent.push('<svg class="participation_chart" width=100 height =100></svg>')
+    popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
+    popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
+    popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
+    popupContent.push("<b><br/>Invalid votes: </b>" + feature.properties.invalid)
+    layer.bindPopup("<p>" + popupContent.join("") + "</p>");
 
-    function chart(){
-      var data = [
-        {key: "Yes", value: feature.properties.yes, color: "green"},
-        {key: "No", value: feature.properties.no, color: "red"},
-        {key: "Invalid", value: feature.properties.invalid, color: "grey"}
-    ];
+    function chart() {
+        var data = [{
+                key: "Yes",
+                value: feature.properties.yes,
+                color: "green"
+            },
+            {
+                key: "No",
+                value: feature.properties.no,
+                color: "red"
+            },
+            {
+                key: "Invalid",
+                value: feature.properties.invalid,
+                color: "grey"
+            }
+        ];
 
-    nv.addGraph(function() {
-        var chart = nv.models.pieChart()
-                .x(function(d) { return d.key; })
-                .y(function(d) { return d.value; })
+        nv.addGraph(function() {
+            var chart = nv.models.pieChart()
+                .x(function(d) {return d.key;})
+                .y(function(d) {return d.value;})
                 .showLegend(true)
                 .showTooltipPercent(true);
 
-        d3.select(".participation_chart")
-            .datum(data)
-            .transition().duration(1200)
-            .call(chart);
+            d3.select(".participation_chart")
+                .datum(data)
+                .transition().duration(1200)
+                .call(chart);
 
-        return chart;
+            return chart;
+        });
+
+    }
+    layer.on({
+        click: chart,
     });
-
-}
-        var popupContent = [];
-        popupContent.push("<b>District: </b>" + feature.properties.name)
-        popupContent.push('<svg class="participation_chart" width=100 height =100></svg>')
-        popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
-        popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
-        popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
-        popupContent.push("<b><br/>Invalid votes: </b>" + feature.properties.invalid)
-        layer.bindPopup("<p>" + popupContent.join("") + "</p>");
-
-    layer.on(
-        {
-            click : chart,
-        }
-    );
-
-
 }
