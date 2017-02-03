@@ -86,7 +86,7 @@ function zoomToFeature(feature) {
 function onEachFeature(feature, layer) {
     var popupContent = [];
     popupContent.push("<b>District: </b>" + feature.properties.name)
-    popupContent.push('<svg class="participation_chart" width=100 height =100></svg>')
+    popupContent.push('<svg class="participation_chart" width=30 height =30></svg>')
     popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
     popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
     popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
