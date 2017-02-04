@@ -18,6 +18,7 @@
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="alternate" type="application/rdf+xml" href="lsc-2011-11-29.rdf" />
+  <link rel="stylesheet" href="css/vocab_style.css" />
 
   <title>Referendum Vocabulary Specification</title>
 </head>
@@ -109,15 +110,15 @@ This work is licensed under a <a href="http://creativecommons.org/licenses/by/1.
 </div>
 
 <h2 id="sec-toc">Table of contents</h2>
-<ul>
-  <li><a href="#sec-intro">1. Introduction</a></li>
-  <li><a href="#sec-glance">2. The Referendum Vocabulary at a glance</a></li>
-  <li><a href="#sec-desc">3. Description about REF vocabulary</a></li>
-  <ul>
-      <li><a href="#sec-extension">3.1. Evolution and extension of REF</a></li>
-  </ul>
-  <li><a href="#sec-specification">4. Cross-reference for REF classes and properties</a></li>
-</ul>
+<ol>
+  <li><a href="#sec-intro">Introduction</a></li>
+  <li><a href="#sec-glance">The Referendum Vocabulary at a glance</a></li>
+  <li><a href="#sec-desc">Description about REF vocabulary</a></li>
+  <ol>
+      <li><a href="#sec-extension">Evolution and extension of REF</a></li>
+  </ol>
+  <li><a href="#sec-specification">Cross-reference for REF classes and properties</a></li>
+</ol>
 
 <hr />
 
@@ -145,7 +146,7 @@ Referendum Vocabulary
 
 <p>An alphabetical index of terms from the Referendum Vocabulary, by class and by property, are given below. All the terms are hyperlinked to their detailed description for quick reference.</p>
 
-<div style="padding: 5px; border: dotted; background-color: #ddd;">
+<div class="box">
 
 
 
@@ -206,12 +207,14 @@ Referendum Vocabulary
   <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref"></div>
   <div property="rdfs:label" content="Referendum" xml:lang="en"></div>
   <p class="TermComment" property="rdfs:comment" xml:lang="en">Any kind of referendum event. This vocabulary might be used for e.g. describing a local referendum.
+    <br> For example: The referendum of November 6th 2016 in Muenster can be classified with the class Referendum.
 </p>
   <table style="th { float: top; }">
     <tbody>
       <tr><th>identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum</a></td></tr>
       </tbody>
     </table>
+
   <p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
   <br/>
 </div>
@@ -222,6 +225,7 @@ Referendum Vocabulary
   <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref"></div>
   <div property="rdfs:label" content="District" xml:lang="en"></div>
   <p class="TermComment" property="rdfs:comment" xml:lang="en">Any kind of district, e.g. a city district.
+    <br> For example: The voting of the referendum of November 6th 2016 in Muenster took place in different districts of the cities which can be classified by District.
 </p>
   <table style="th { float: top; }">
     <tbody>
@@ -242,7 +246,9 @@ Referendum Vocabulary
 
   <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#isAbout"></div>
   <div property="rdfs:label" content="isAbout" xml:lang="en"></div>
-  <p class="TermComment" property="rdfs:comment" xml:lang="en">Any kind of subject of a voting event.</p>
+  <p class="TermComment" property="rdfs:comment" xml:lang="en">Any kind of subject of a voting event.
+    <br> For example: The referendum of November 6th 2016 in Muenster had the the subject of opening shops on additional Sundays in the Muenster city center.
+  </p>
   <table style="th { float: top; }">
     <tbody>
       <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#isAbout">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#isAbout</a></td></tr>
@@ -269,7 +275,9 @@ Referendum Vocabulary
 
 <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#affectedArea"></div>
 <div property="rdfs:label" content="affectedArea" xml:lang="en"></div>
-<p class="TermComment" property="rdfs:comment" xml:lang="en">Any area that will be affected by the result of a voting event. </p>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">Any area that will be affected by the result of a voting event.
+  <br> For example: The referendum of November 6th 2016 in Muenster affected the shops in the city centre and parts of the street Hammerstr.
+ </p>
 <table style="th { float: top; }">
   <tbody>
     <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#affectedArea">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#affectedArea</a></td></tr>
@@ -297,7 +305,9 @@ Referendum Vocabulary
 
 <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasVotingDistrict"></div>
 <div property="rdfs:label" content="hasVotingDistrict" xml:lang="en"></div>
-<p class="TermComment" property="rdfs:comment" xml:lang="en">Any districts which are allowed to take part in the voting event.</p>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">Any districts which are allowed to take part in the voting event.
+  <br> For example: The referendum of November 6th 2016 in Muenster had more voting districts than just the area which was affected by the referendum. This can be expressed by using hasVotingDistrict.
+</p>
 <table style="th { float: top; }">
   <tbody>
     <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasVotingDistrict">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasVotingDistrict</a></td></tr>
@@ -325,7 +335,9 @@ Referendum Vocabulary
 
 <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasSubDistrict"></div>
 <div property="rdfs:label" content="hasSubDistrict" xml:lang="en"></div>
-<p class="TermComment" property="rdfs:comment" xml:lang="en">Any subdevision of districts which are allowed to vote, in order to obtain a finer granuality of the voting results. </p>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">Any subdevision of districts which are allowed to vote, in order to obtain a finer granuality of the voting results.
+  <br> For example: The results from the referendum of November 6th 2016 in Muenster are available in a finer granuality than just the districts. This can be expressed by using hasSubDistrict.
+</p>
 <table style="th { float: top; }">
   <tbody>
     <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasSubDistrict">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasSubDistrict</a></td></tr>
@@ -353,7 +365,9 @@ Referendum Vocabulary
 
 <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasTotalVoters"></div>
 <div property="rdfs:label" content="hasTotalVoters" xml:lang="en"></div>
-<p class="TermComment" property="rdfs:comment" xml:lang="en">Any number of people who are alowed to vote during the particulat voting event. </p>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">Any number of people who are alowed to vote during the particulat voting event.
+  <br> For example: Not all people are allowed to vote at every voting event. During the referendum of November 6th 2016 in Muenster only citzien aged 18. and above of the city were allowed to vote.
+</p>
 <table style="th { float: top; }">
   <tbody>
     <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasTotalVoters">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasTotalVoters</a></td></tr>
@@ -380,7 +394,9 @@ Referendum Vocabulary
 
 <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasYesVotes"></div>
 <div property="rdfs:label" content="hasYesVotes" xml:lang="en"></div>
-<p class="TermComment" property="rdfs:comment" xml:lang="en">The number of people who voted with "YES" during a voting event. </p>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">The number of people who voted with "YES" during a voting event.
+  <br> For example: The referendum of November 6th 2016 in Muenster the voters were allowed to choose between "Yes" and "No", and the number of "Yes"-votes can be expressed by this property.
+</p>
 <table style="th { float: top; }">
   <tbody>
     <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasYesVotes">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasYesVotes</a></td></tr>
@@ -408,7 +424,9 @@ Referendum Vocabulary
 
 <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasNoVotes"></div>
 <div property="rdfs:label" content="hasNoVotes" xml:lang="en"></div>
-<p class="TermComment" property="rdfs:comment" xml:lang="en">The number of people who voted with "NO" during a voting event. </p>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">The number of people who voted with "NO" during a voting event.
+  <br>For example: The referendum of November 6th 2016 in Muenster the voters were allowed to choose between "Yes" and "No", and the number of "No"-votes can be expressed by this property.
+</p>
 <table style="th { float: top; }">
   <tbody>
     <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasNoVotes">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasNoVotes</a></td></tr>
@@ -436,7 +454,9 @@ Referendum Vocabulary
 
 <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasInvalidVotes"></div>
 <div property="rdfs:label" content="hasInvalidVotes" xml:lang="en"></div>
-<p class="TermComment" property="rdfs:comment" xml:lang="en">The number of people made their voting invalid during the voting event. </p>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">The number of people made their voting invalid during the voting event.
+  <br>For example: The referendum of November 6th 2016 in Muenster some people decided to make their vote invalid, so this can be expressed by hasInvalidVotes.
+</p>
 <table style="th { float: top; }">
   <tbody>
     <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasInvalidVotes">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasInvalidVotes</a></td></tr>
