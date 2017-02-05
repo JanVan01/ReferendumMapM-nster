@@ -17,27 +17,35 @@ ref:hasInvalidVotes ?invalid;\
 ref:hasSubDistrict ?child;\
 geo:hasGeometry ?geo.\
 ?geo geo:hasSerialization ?wkt.\
+?child ref:hasSubDistrict ?child2.\
 }}';
 
 var url = 'http://giv-lodumdata.uni-muenster.de:8282/parliament/sparql'
 
 $(document).ready(function() {
-
-    $.ajax({
-        url: url,
-        data: {
-            'query': query,
-            'format': 'json'
-        },
-        dataType: 'json',
-        success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {
-                style: getStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        }
-    })
+  getData(query, function(jsonLayer){
+    jsonLayer.addTo(map);
+  })
 });
+
+function getData(query, callback) {
+  $.ajax({
+      url: url,
+      data: {
+          'query': query,
+          'format': 'json'
+      },
+      dataType: 'json',
+      success: function(data) {
+        layer = L.geoJson(sparql2GeoJSON(data), {
+            style: getStyle,
+            onEachFeature: onEachFeature
+        });
+        callback(layer);
+      }
+  })
+
+}
 
 function sparql2GeoJSON(input) {
     var output = [];
