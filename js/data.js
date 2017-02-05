@@ -1,4 +1,4 @@
-var query = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
+var query1 = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
 PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
@@ -20,15 +20,66 @@ geo:hasGeometry ?geo.\
 ?child ref:hasSubDistrict ?child2.\
 }}';
 
+var query2 = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
+PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
+SELECT DISTINCT\
+?name ?total ?yes ?no ?invalid ?wkt \
+WHERE {\
+GRAPH <http://course.geoinfo2016.org/G1>{\
+?parent1 ref:hasSubDistrict ?parent2.\
+?parent2 ref:hasSubDistrict ?district.\
+?district rdf:type ref:District;\
+foaf:name ?name;\
+ref:hasTotalVoters ?total;\
+ref:hasYesVotes ?yes;\
+ref:hasNoVotes ?no;\
+ref:hasInvalidVotes ?invalid;\
+ref:hasSubDistrict ?child;\
+geo:hasGeometry ?geo.\
+?geo geo:hasSerialization ?wkt.\
+}}';
+
+var query3 = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
+PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
+SELECT DISTINCT\
+?name ?total ?yes ?no ?invalid ?wkt \
+WHERE {\
+GRAPH <http://course.geoinfo2016.org/G1>{\
+?parent1 ref:hasSubDistrict ?parent2.\
+?parent2 ref:hasSubDistrict ?parent3.\
+?parent3 ref:hasSubDistrict ?district.\
+?district rdf:type ref:District;\
+foaf:name ?name;\
+ref:hasTotalVoters ?total;\
+ref:hasYesVotes ?yes;\
+ref:hasNoVotes ?no;\
+ref:hasInvalidVotes ?invalid;\
+geo:hasGeometry ?geo.\
+?geo geo:hasSerialization ?wkt.\
+}}';
+
+var layerControl = L.control.layers().addTo(map);
+
 var url = 'http://giv-lodumdata.uni-muenster.de:8282/parliament/sparql'
 
 $(document).ready(function() {
-  getData(query, function(jsonLayer){
-    jsonLayer.addTo(map);
-  })
+  loadLayer(query1, function(layer){
+    layerControl.addBaseLayer(layer, 'Stadtteile');
+  });
+  loadLayer(query2, function(layer){
+    layer.addTo(map);
+    layerControl.addBaseLayer(layer, 'Kommunalwahlbezirke');
+  });
+  loadLayer(query3, function(layer){
+    layerControl.addBaseLayer(layer, 'Stimmbezirke');
+  });
 });
 
-function getData(query, callback) {
+function loadLayer(query, callback) {
   $.ajax({
       url: url,
       data: {
@@ -44,7 +95,6 @@ function getData(query, callback) {
         callback(layer);
       }
   })
-
 }
 
 function sparql2GeoJSON(input) {
