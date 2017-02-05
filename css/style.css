@@ -17,3 +17,27 @@ html, body, #map {
 .arc path{
     stroke: #fff;
 }
+
+
+.popupCustom .leaflet-popup-content-wrapper {
+  background:#E8E8E8;
+  color:black;
+  font: 22pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+  line-height:5px;
+  width:800px;
+  height:600px;
+  text-align: center
+  
+
+}
+
+.popupCustom .leaflet-popup-tip-container {
+  width:1px;
+  height:1px;
+  }
+
+.popupCustom .leaflet-popup-container {
+  width:10px;
+  height:10px;
+  color:black;
+  }

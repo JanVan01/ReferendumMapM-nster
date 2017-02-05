@@ -61,6 +61,7 @@ function sparql2GeoJSON(input) {
 
 
 
+
 function getStyle(feature) {
     return {
         fillColor: getFillColor(feature),
@@ -130,4 +131,6 @@ function onEachFeature(feature, layer) {
     layer.on({
         click: chart,
     });
+    
+    
 }

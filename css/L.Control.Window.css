@@ -1,0 +1,126 @@
+.leaflet-control-window-wrapper{
+    display: none;
+    opacity: 0;
+    -webkit-overflow-scrolling: touch;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.nonmodal{
+    z-index: 6000;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 7000;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.visible {
+    display: block;
+    opacity: 1;
+}
+
+.leaflet-control-window{
+    position: absolute;
+    z-index: 2000;
+    border-radius: 2px;
+    margin: 8px;
+
+
+}
+
+.control-window{
+
+    background-color: transparent
+    font: 14px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: white;
+    text-align: justify;
+}
+
+
+.leaflet-control-window .titlebar{
+    min-height: 38px;
+    cursor: grab;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    text-align: center;
+    font: 34px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.leaflet-control-window .close {
+    position: absolute;
+    top: -80px;
+    left: 850px;
+    width: 28px;
+    height: 28px;
+    border-radius: 100%;
+    font: 16px/14px Tahoma, Verdana, sans-serif;
+    cursor: pointer;
+    z-index:30;
+    transition-property: background;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+
+
+    color: #e4e4e4;
+    font-size: 22pt;
+    text-align: center;
+    line-height: 0.9em;
+}
+
+.leaflet-control-window .close:hover {
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.leaflet-control-window .content{
+    padding: 8px;
+    margin-top: -10px;
+    z-index:29;
+    overflow: auto;
+}
+
+.leaflet-control-window .promptButtons{
+    text-align: right;
+    padding: 16px;
+}
+
+.leaflet-control-window button{
+    position: relative;
+    display: inline-block;
+    background-color: black;
+    color: white;
+
+    opacity: 0.5;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    font-family: Times-New-Roman;
+    cursor:pointer;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration:none;
+    text-align: left;
+    vertical-align: center;
+    border: 0;
+    -webkit-border-radius: 4px;
+    padding: 8px;
+    margin: 20px 80px 40px 68px;
+}
+
+.leaflet-control-window button:focus {
+    outline:0;
+}
+
+.leaflet-control-window button:hover {
+    opacity: 1;
+}
+.disabled{
+	opacity: .5;
+	pointer-events:none;
+}
