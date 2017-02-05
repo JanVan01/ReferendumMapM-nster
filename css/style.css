@@ -17,3 +17,8 @@ html, body, #map {
 .arc path{
     stroke: #fff;
 }
+
+.chart_area{
+  width: 200px;
+  height: 200px;
+}
