@@ -1,4 +1,4 @@
-var query = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
+var query1 = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
 PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
@@ -17,27 +17,85 @@ ref:hasInvalidVotes ?invalid;\
 ref:hasSubDistrict ?child;\
 geo:hasGeometry ?geo.\
 ?geo geo:hasSerialization ?wkt.\
+?child ref:hasSubDistrict ?child2.\
 }}';
+
+var query2 = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
+PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
+SELECT DISTINCT\
+?name ?total ?yes ?no ?invalid ?wkt \
+WHERE {\
+GRAPH <http://course.geoinfo2016.org/G1>{\
+?parent1 ref:hasSubDistrict ?parent2.\
+?parent2 ref:hasSubDistrict ?district.\
+?district rdf:type ref:District;\
+foaf:name ?name;\
+ref:hasTotalVoters ?total;\
+ref:hasYesVotes ?yes;\
+ref:hasNoVotes ?no;\
+ref:hasInvalidVotes ?invalid;\
+ref:hasSubDistrict ?child;\
+geo:hasGeometry ?geo.\
+?geo geo:hasSerialization ?wkt.\
+}}';
+
+var query3 = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
+PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
+SELECT DISTINCT\
+?name ?total ?yes ?no ?invalid ?wkt \
+WHERE {\
+GRAPH <http://course.geoinfo2016.org/G1>{\
+?parent1 ref:hasSubDistrict ?parent2.\
+?parent2 ref:hasSubDistrict ?parent3.\
+?parent3 ref:hasSubDistrict ?district.\
+?district rdf:type ref:District;\
+foaf:name ?name;\
+ref:hasTotalVoters ?total;\
+ref:hasYesVotes ?yes;\
+ref:hasNoVotes ?no;\
+ref:hasInvalidVotes ?invalid;\
+geo:hasGeometry ?geo.\
+?geo geo:hasSerialization ?wkt.\
+}}';
+
+var layerControl = L.control.layers().addTo(map);
 
 var url = 'http://giv-lodumdata.uni-muenster.de:8282/parliament/sparql'
 
 $(document).ready(function() {
-
-    $.ajax({
-        url: url,
-        data: {
-            'query': query,
-            'format': 'json'
-        },
-        dataType: 'json',
-        success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {
-                style: getStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        }
-    })
+  loadLayer(query1, function(layer){
+    layerControl.addBaseLayer(layer, 'Stadtteile');
+  });
+  loadLayer(query2, function(layer){
+    layer.addTo(map);
+    layerControl.addBaseLayer(layer, 'Kommunalwahlbezirke');
+  });
+  loadLayer(query3, function(layer){
+    layerControl.addBaseLayer(layer, 'Stimmbezirke');
+  });
 });
+
+function loadLayer(query, callback) {
+  $.ajax({
+      url: url,
+      data: {
+          'query': query,
+          'format': 'json'
+      },
+      dataType: 'json',
+      success: function(data) {
+        layer = L.geoJson(sparql2GeoJSON(data), {
+            style: getStyle,
+            onEachFeature: onEachFeature
+        });
+        callback(layer);
+      }
+  })
+}
 
 function sparql2GeoJSON(input) {
     var output = [];
@@ -99,7 +157,7 @@ function zoomToFeature(feature) {
 function onEachFeature(feature, layer) {
     var popupContent = [];
     popupContent.push("<b>District: </b>" + feature.properties.name)
-    popupContent.push('<svg class="participation_chart" width=100 height =100></svg>')
+    popupContent.push('<div class="chart_area"><svg class="participation_chart"></svg></div>')
     popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
     popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
     popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)

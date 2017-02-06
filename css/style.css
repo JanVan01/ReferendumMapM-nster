@@ -31,6 +31,7 @@ html, body, #map {
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     border-radius: 5px;
 	padding: 6px 8px;
+
 }
 .legend i {
     width: 18px;

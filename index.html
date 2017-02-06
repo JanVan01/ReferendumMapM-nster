@@ -24,8 +24,7 @@
             <ul role="tablist">
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                 <li><a href="#help" role="tab"><i class="fa fa-question"></i></a></li>
-                <li><a href="#contact" role="tab"><i class="fa fa-envelope"></i></a></li>
-				<li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+                <li><a href="#contact" role="tab"><i class="fa fa-info"></i></a></li>
             </ul>
         </div>
 
@@ -33,29 +32,21 @@
         <div class="sidebar-content">
             <div class="sidebar-pane" id="home">
                 <h1 class="sidebar-header">Home<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                <h2>Your Choice Counts!!</h2>
-				<p>A framework for displaying results of the referendum of Münster.</p>
 				<h2>Referendum Map Münster</h2>
                 <p>Welcome to the Referendum Map Münster. Here you will be provided
-				with infomation regarding the recent referendum that took place
-				in Münster on November 6th in 2017. This referendum took place so as to decide upon whether
-                the shops on few Sundays before the Christmas should remain open or
-                should be closed, as they are every Sunday.</p>
+                    with infomation regarding the recent referendum that took place
+				    in Münster on November 6th in 2016. The referendum took place to detect wehther some shops 
+                    should be open on three additional Sundays or be closed. 
+                    The affected shops are those in the two main shopping streets in the inner city 
+                    (Salzstraße and Prinzipalmarkt).
+                </p>
 
-                <p>The polling stations were well distributed throughout Münster
-                 in order to get the opinion of as many people in the shape of votes.
-                 Here is a visual representation of the results from all
-                 the different stations. The data that we are interested in is the
-                 number of people that were eligible for voting, the number of people
-                 that actually voted, invalid votes, valid votes, number of people in
-                 favor of this and number of people against this decision. </p>
-
-                <p>Our representation shows the major areas of Münster and the colours (Green or Red)
-                 of the corresponding areas denote the overall result from that particular station.
-                 For example the areas highlighted as green, show that majority of the voters in that
-                 area voted in support of the shops being opened on these Sundays and areas in red colour
-                 show the opposite trend. Apart from the this the results can also be seen in
-                 figures and on pie charts. </p>
+                <p>This Application provides a visual representation of the results from the referendum 
+                    devided according to the different voting districts. The coloured districts showing 
+                    the overall result for the particular district. By zooming in and out the user 
+                    will be provided with more or less voting districts. By clicking on the districts 
+                    additional information are shown, like the number of Yes- and No-votes.  
+                </p>
 
             </div>
 
@@ -64,16 +55,31 @@
             </div>
 
             <div class="sidebar-pane" id="contact">
-                <h1 class="sidebar-header">Contact<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            </div>
+                <h1 class="sidebar-header">About<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <h2> The Project</h2>
+                <p> This Application was part of a project that was carried out as part of a course that took place
+                    at the Institut for Geoinformatics. The course is part of the master study programm "Geoinformatics".
+                    The course "Geoinforamtion in Society" was about turning existing data to geographic linked open data 
+                    and build a software application which consumes the data and visualize it.
+                </p>
 
-            <div class="sidebar-pane" id="settings">
-                <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <h2> The Institute for Geoinformatics </h2>
+                The "Institute for Geoinformatics" (Ifgi) is an institution of the University of Münster.<br>  
+                Heisenbergstr. 2, 48149 Muenster
+
+                <h2> More </h2>
+                <p> If you want to know more about the Project, and how it exactly works, please follow the 
+                    <a href="https://github.com/JanVan01/ReferendumMapMuenster">Link</a>
+                    <br><br>
+                    Furthermore, many thanks to the city of Münster and the Office for Urban Development,
+                    city planning and traffic planning for the provision of the data. 
+
             </div>
         </div>
     </div>
 
-    <div id="map" class="sidebar-map"></div>
+    <div id="map" class="sidebar-map">
+    </div>
 
 
 </body>
