@@ -130,9 +130,22 @@ function getStyle(feature) {
     };
 }
 
+
 function getFillColor(feature) {
-    return feature.properties.no > feature.properties.yes ? 'red' : 'green';
+    if(feature.properties.no > feature.properties.yes){
+        return 'red' 
+    }
+    else{ 
+        return 'green' 
+        }
 }
+
+function getColor(feature){
+     feature == 'yes'   ? '#FED976':
+     feature == 'no'   ?'#FFEDA0' :
+                       '#A3FF73';
+}
+
 
 function getOpacity(feature) {
     return (feature.properties.no + feature.properties.yes + feature.properties.invalid) * 3 / feature.properties.totalVoters;
@@ -192,3 +205,15 @@ function onEachFeature(feature, layer) {
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
