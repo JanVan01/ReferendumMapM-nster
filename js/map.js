@@ -10,7 +10,7 @@ map.setMaxBounds([
     [52.1554460954, 7.8524780273]
 ]);
 
-map.zoomControl.setPosition('bottomright');
+map.zoomControl.setPosition('topright');
 
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     noWrap: true,
@@ -18,3 +18,4 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 L.control.sidebar('sidebar').addTo(map);
+
