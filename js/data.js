@@ -204,25 +204,7 @@ function onEachFeature(feature, layer) {
 }
 
 
-var legend = L.control({position: 'bottomright'});
 
-legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend'),
-       
-        categories = ['yes', 'no'];
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < categories.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(categories[i]) + '"></i> ' +
-             (categories[i] ? categories[i] + '<br>' : '+');
-    }
-
-    return div;
-};
-
-legend.addTo(map);
 
 
 
