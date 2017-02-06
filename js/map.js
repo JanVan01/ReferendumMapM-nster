@@ -13,7 +13,7 @@ map.setMaxBounds([
     [52.1554460954, 7.8524780273]
 ]);
 
-map.zoomControl.setPosition('bottomright');
+
 
 
 
@@ -30,4 +30,18 @@ L.control.window(map,{title:'Welcome to the Referendum Map Münster',maxWidth:40
 .prompt({callback:function(){}})
 .show();
 
+
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML += '<i style="background:green"></i> yes <br>'
+    div.innerHTML += '<i style="background:red"></i> no <br>'
+    div.innerHTML += '<i class="gradient"></i> participation <br>'
+    return div;
+};
+
+legend.addTo(map);
+
+map.zoomControl.setPosition('bottomright');
 
