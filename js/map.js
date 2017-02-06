@@ -10,7 +10,7 @@ map.setMaxBounds([
     [52.1554460954, 7.8524780273]
 ]);
 
-map.zoomControl.setPosition('bottomright');
+
 
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     noWrap: true,
@@ -18,3 +18,17 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 L.control.sidebar('sidebar').addTo(map);
+
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML += '<i style="background:green"></i> yes <br>'
+    div.innerHTML += '<i style="background:red"></i> no <br>'
+    div.innerHTML += '<i class="gradient"></i> participation <br>'
+    return div;
+};
+
+legend.addTo(map);
+
+map.zoomControl.setPosition('bottomright');
