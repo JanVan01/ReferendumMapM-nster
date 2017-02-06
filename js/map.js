@@ -26,7 +26,7 @@ L.control.sidebar('sidebar').addTo(map);
 
 
 L.control.window(map,{title:'Welcome to the Referendum Map Münster',maxWidth:400,modal: true})
-.content('</br><p>Here you will be provided with infomation regarding the recent referendum that took place in Münster on November 6th in 2017. Just click on the district that you want to know the Yes, No and Invalid votes.</p>')
+.content('</br><p>Here you will be provided with infomation regarding the recent referendum that took place in Münster on November 6th in 2016. Just click on the district that you want to know the Yes, No and Invalid votes.</p>')
 .prompt({callback:function(){}})
 .show();
 
