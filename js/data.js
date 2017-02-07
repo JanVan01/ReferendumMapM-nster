@@ -19,7 +19,24 @@ $(document).ready(function() {
   loadLayer(buildUrl('Stimmbezirke'), function(layer){
     layerControl.addBaseLayer(layer, 'Stimmbezirke');
   });
+  loadGeneralInfo()
 });
+
+function loadGeneralInfo() {
+  var url = baseUrl + '_general' + authentication;
+  $.ajax({
+      url: url,
+      dataType: 'json',
+      success: function(data) {
+        console.log();
+        overlay = L.geoJson($.geo.WKT.parse(data[0].affectedArea.value), {
+          style:{weight: 2 ,
+          fillOpacity: 0.5}
+        });
+        layerControl.addOverlay(overlay, 'Affected Area');
+      }
+  })
+}
 
 function buildUrl(layerName){
   return baseUrl + layerEndpoints[layerName] + authentication
