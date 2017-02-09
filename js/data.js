@@ -76,9 +76,9 @@ function sparql2GeoJSON(input) {
         };
         feature.geometry = $.geo.WKT.parse(entry.wkt.value);
         if (feature.geometry.coordinates.length == 0){
-			feature.geometry = manuallyGetGeometry(entry.wkt.value)
-		}
-		feature.properties.name = entry.name.value;
+			       feature.geometry = manuallyGetGeometry(entry.wkt.value)
+		    }
+		    feature.properties.name = entry.name.value;
         feature.properties.totalVoters = parseInt(entry.total.value);
         feature.properties.yes = parseInt(entry.yes.value);
         feature.properties.no = parseInt(entry.no.value);
@@ -149,6 +149,13 @@ function onEachFeature(feature, layer) {
     popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
     popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
     popupContent.push("<b><br/>Invalid votes: </b>" + feature.properties.invalid)
+    popupContent.push("<b><br/>Participation: </b>" + ((feature.properties.no + feature.properties.yes + feature.properties.invalid)* 100 / feature.properties.totalVoters).toFixed(2)+"%")
+
+    if (feature.properties.description){
+      popupContent.push("<br/><br/><b>Description</b><br/>")
+      popupContent.push(feature.properties.description)
+
+    }
     layer.bindPopup("<p>" + popupContent.join("") + "</p>");
 
     function chart() {
