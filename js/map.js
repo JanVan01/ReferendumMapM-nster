@@ -1,3 +1,4 @@
+
 var map = L.map('map', {
     center: [51.959312, 7.617267],
     zoom: 12,
@@ -5,9 +6,11 @@ var map = L.map('map', {
     zoomControl: true
 });
 
+
+
 map.setMaxBounds([
-    [51.7675880511, 7.3663330078],
-    [52.1554460954, 7.8524780273]
+    [51.7475880511, 7.3663330078],
+    [52.2254460954, 7.8524780273]
 ]);
 
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -16,6 +19,13 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 L.control.sidebar('sidebar').addTo(map);
+
+
+L.control.window(map,{title:'Welcome to the Referendum Map Münster',maxWidth:400,modal: true})
+.content('</br><p>Here you will be provided with infomation regarding the recent referendum that took place in Münster on November 6th in 2016. Just click on the district that you want to know the Yes, No and Invalid votes.</p>')
+.prompt({callback:function(){}})
+.show();
+
 
 var legend = L.control({position: 'bottomright'});
 

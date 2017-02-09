@@ -1,91 +1,50 @@
-var query1 = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
-PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
-SELECT DISTINCT\
-?name ?total ?yes ?no ?invalid ?wkt \
-WHERE {\
-GRAPH <http://course.geoinfo2016.org/G1>{\
-?parent rdf:type ref:District;\
-ref:hasSubDistrict ?district.\
-?district rdf:type ref:District;\
-foaf:name ?name;\
-ref:hasTotalVoters ?total;\
-ref:hasYesVotes ?yes;\
-ref:hasNoVotes ?no;\
-ref:hasInvalidVotes ?invalid;\
-ref:hasSubDistrict ?child;\
-geo:hasGeometry ?geo.\
-?geo geo:hasSerialization ?wkt.\
-?child ref:hasSubDistrict ?child2.\
-}}';
-
-var query2 = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
-PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
-SELECT DISTINCT\
-?name ?total ?yes ?no ?invalid ?wkt \
-WHERE {\
-GRAPH <http://course.geoinfo2016.org/G1>{\
-?parent1 ref:hasSubDistrict ?parent2.\
-?parent2 ref:hasSubDistrict ?district.\
-?district rdf:type ref:District;\
-foaf:name ?name;\
-ref:hasTotalVoters ?total;\
-ref:hasYesVotes ?yes;\
-ref:hasNoVotes ?no;\
-ref:hasInvalidVotes ?invalid;\
-ref:hasSubDistrict ?child;\
-geo:hasGeometry ?geo.\
-?geo geo:hasSerialization ?wkt.\
-}}';
-
-var query3 = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
-PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
-SELECT DISTINCT\
-?name ?total ?yes ?no ?invalid ?wkt \
-WHERE {\
-GRAPH <http://course.geoinfo2016.org/G1>{\
-?parent1 ref:hasSubDistrict ?parent2.\
-?parent2 ref:hasSubDistrict ?parent3.\
-?parent3 ref:hasSubDistrict ?district.\
-?district rdf:type ref:District;\
-foaf:name ?name;\
-ref:hasTotalVoters ?total;\
-ref:hasYesVotes ?yes;\
-ref:hasNoVotes ?no;\
-ref:hasInvalidVotes ?invalid;\
-geo:hasGeometry ?geo.\
-?geo geo:hasSerialization ?wkt.\
-}}';
+var baseUrl = 'http://giv-oct.uni-muenster.de:8080/api/dataset/ref_ms';
+var layerEndpoints = {
+  Stadtteile: '_level1',
+  Kommunalwahlbezirke: '_level2_1',
+  Stimmbezirke: '_level3_1'
+}
+var authentication = '?authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfbmFtZSI6IlJlZmVyZW5kdW0gTWFwIE3DvG5zdGVyIiwiaWF0IjoxNDg0NTc5NTUzfQ.AP0vY49C9NNtHEo6ZuDpqLgv6ATeWbIcPSJKc8-lljI'
 
 var layerControl = L.control.layers().addTo(map);
 
-var url = 'http://giv-lodumdata.uni-muenster.de:8282/parliament/sparql'
-
 $(document).ready(function() {
-  loadLayer(query1, function(layer){
+  loadLayer(buildUrl('Stadtteile'), function(layer){
     layerControl.addBaseLayer(layer, 'Stadtteile');
   });
-  loadLayer(query2, function(layer){
+  loadLayer(buildUrl('Kommunalwahlbezirke'), function(layer){
     layer.addTo(map);
     layerControl.addBaseLayer(layer, 'Kommunalwahlbezirke');
   });
-  loadLayer(query3, function(layer){
+  loadLayer(buildUrl('Stimmbezirke'), function(layer){
     layerControl.addBaseLayer(layer, 'Stimmbezirke');
   });
+  loadGeneralInfo()
 });
 
-function loadLayer(query, callback) {
+function loadGeneralInfo() {
+  var url = baseUrl + '_general' + authentication;
   $.ajax({
       url: url,
-      data: {
-          'query': query,
-          'format': 'json'
-      },
+      dataType: 'json',
+      success: function(data) {
+        console.log();
+        overlay = L.geoJson($.geo.WKT.parse(data[0].affectedArea.value), {
+          style:{weight: 2 ,
+          fillOpacity: 0.5}
+        });
+        layerControl.addOverlay(overlay, 'Affected Area');
+      }
+  })
+}
+
+function buildUrl(layerName){
+  return baseUrl + layerEndpoints[layerName] + authentication
+}
+
+function loadLayer(url, callback) {
+  $.ajax({
+      url: url,
       dataType: 'json',
       success: function(data) {
         layer = L.geoJson(sparql2GeoJSON(data), {
@@ -99,8 +58,8 @@ function loadLayer(query, callback) {
 
 function sparql2GeoJSON(input) {
     var output = [];
-    for (i in input.results.bindings) {
-        var entry = input.results.bindings[i];
+    for (i in input) {
+        var entry = input[i];
         var feature = {
             type: "Feature",
             geometry: {},
@@ -112,10 +71,14 @@ function sparql2GeoJSON(input) {
         feature.properties.yes = parseInt(entry.yes.value);
         feature.properties.no = parseInt(entry.no.value);
         feature.properties.invalid = parseInt(entry.invalid.value);
+        if(entry.description){
+          feature.properties.description = entry.description.value;
+        }
         output.push(feature);
     }
     return output;
 }
+
 
 
 
@@ -201,6 +164,8 @@ function onEachFeature(feature, layer) {
     layer.on({
         click: chart,
     });
+    
+    
 }
 
 
