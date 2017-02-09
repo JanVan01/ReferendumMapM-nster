@@ -113,9 +113,9 @@ function getStyle(feature) {
 
 function getFillColor(feature) {
     if(feature.properties.no > feature.properties.yes) {
-        return 'red' 
-    } else { 
-        return 'green' 
+        return 'red'
+    } else {
+        return 'green'
     }
 }
 

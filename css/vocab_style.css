@@ -1,0 +1,37 @@
+body {
+    /*background-color: #009933;*/
+    color: #000000;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+h1 {
+    color: #009933;
+}
+
+h2 {
+    color: #009933;
+}
+
+h3 {
+    color: #009933;
+}
+
+.box{
+    background-color: #b3e6b3;
+    color: #267326;
+    width: 85%;
+    border: 5px solid #b3e6b3;
+    padding: 5px;
+    margin: 10px;
+
+}
+
+.specterm {
+  border-style: hidden hidden hidden solid;
+  border-color:  #006622;
+  margin-left: 40px;
+  margin-right: 70px;
+  padding-left: 5px;
+
+}
