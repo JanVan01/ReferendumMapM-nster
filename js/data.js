@@ -24,7 +24,7 @@ $(document).ready(function() {
 
   map.on('baselayerchange', function(layer) {
     if(layer.name == 'Stimmbezirke') {
-    alert('No votes throught letters were conducted for this layer. As a result we see low opacity, which depends upon the fraction (total number of people that voted/total number of people in the area) of people that voted. For the other two layers, voting through letters was also conducted, hence you see a higher opacity of every area in those layers as compared to areas this layer');
+    alert('The dataset this visualization is based on did not contain any information about letter votes for this level of detail. As a result the shown participation numbers are only based on the number of people that voted in person. Thus the participation numbers apear to be lower than in the other two layers where the letter votes are included.');
   }
 });
 
@@ -97,9 +97,9 @@ function getStyle(feature) {
 
 function getFillColor(feature) {
     if(feature.properties.no > feature.properties.yes) {
-        return 'red' 
-    } else { 
-        return 'green' 
+        return 'red'
+    } else {
+        return 'green'
     }
 }
 
