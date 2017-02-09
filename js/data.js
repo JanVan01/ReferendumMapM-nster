@@ -1,48 +1,65 @@
-var query = 'PREFIX geo: <http://www.opengis.net/ont/geosparql#>\
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>\
-PREFIX ref: <http://course.geoinfo2016.org/G1/vocabulary/ref#>\
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
-SELECT DISTINCT\
-?name ?total ?yes ?no ?invalid ?wkt \
-WHERE {\
-GRAPH <http://course.geoinfo2016.org/G1>{\
-?parent rdf:type ref:District;\
-ref:hasSubDistrict ?district.\
-?district rdf:type ref:District;\
-foaf:name ?name;\
-ref:hasTotalVoters ?total;\
-ref:hasYesVotes ?yes;\
-ref:hasNoVotes ?no;\
-ref:hasInvalidVotes ?invalid;\
-ref:hasSubDistrict ?child;\
-geo:hasGeometry ?geo.\
-?geo geo:hasSerialization ?wkt.\
-}}';
+var baseUrl = 'http://giv-oct.uni-muenster.de:8080/api/dataset/ref_ms';
+var layerEndpoints = {
+  Stadtteile: '_level1',
+  Kommunalwahlbezirke: '_level2_1',
+  Stimmbezirke: '_level3_1'
+}
+var authentication = '?authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfbmFtZSI6IlJlZmVyZW5kdW0gTWFwIE3DvG5zdGVyIiwiaWF0IjoxNDg0NTc5NTUzfQ.AP0vY49C9NNtHEo6ZuDpqLgv6ATeWbIcPSJKc8-lljI'
 
-var url = 'http://giv-lodumdata.uni-muenster.de:8282/parliament/sparql'
+var layerControl = L.control.layers().addTo(map);
 
 $(document).ready(function() {
-
-    $.ajax({
-        url: url,
-        data: {
-            'query': query,
-            'format': 'json'
-        },
-        dataType: 'json',
-        success: function(data) {
-            L.geoJson(sparql2GeoJSON(data), {
-                style: getStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        }
-    })
+  loadLayer(buildUrl('Stadtteile'), function(layer){
+    layerControl.addBaseLayer(layer, 'Stadtteile');
+  });
+  loadLayer(buildUrl('Kommunalwahlbezirke'), function(layer){
+    layer.addTo(map);
+    layerControl.addBaseLayer(layer, 'Kommunalwahlbezirke');
+  });
+  loadLayer(buildUrl('Stimmbezirke'), function(layer){
+    layerControl.addBaseLayer(layer, 'Stimmbezirke');
+  });
+  loadGeneralInfo()
 });
+
+function loadGeneralInfo() {
+  var url = baseUrl + '_general' + authentication;
+  $.ajax({
+      url: url,
+      dataType: 'json',
+      success: function(data) {
+        console.log();
+        overlay = L.geoJson($.geo.WKT.parse(data[0].affectedArea.value), {
+          style:{weight: 2 ,
+          fillOpacity: 0.5}
+        });
+        layerControl.addOverlay(overlay, 'Affected Area');
+      }
+  })
+}
+
+function buildUrl(layerName){
+  return baseUrl + layerEndpoints[layerName] + authentication
+}
+
+function loadLayer(url, callback) {
+  $.ajax({
+      url: url,
+      dataType: 'json',
+      success: function(data) {
+        layer = L.geoJson(sparql2GeoJSON(data), {
+            style: getStyle,
+            onEachFeature: onEachFeature
+        });
+        callback(layer);
+      }
+  })
+}
 
 function sparql2GeoJSON(input) {
     var output = [];
-    for (i in input.results.bindings) {
-        var entry = input.results.bindings[i];
+    for (i in input) {
+        var entry = input[i];
         var feature = {
             type: "Feature",
             geometry: {},
@@ -54,10 +71,14 @@ function sparql2GeoJSON(input) {
         feature.properties.yes = parseInt(entry.yes.value);
         feature.properties.no = parseInt(entry.no.value);
         feature.properties.invalid = parseInt(entry.invalid.value);
+        if(entry.description){
+          feature.properties.description = entry.description.value;
+        }
         output.push(feature);
     }
     return output;
 }
+
 
 
 
@@ -86,7 +107,7 @@ function zoomToFeature(feature) {
 function onEachFeature(feature, layer) {
     var popupContent = [];
     popupContent.push("<b>District: </b>" + feature.properties.name)
-    popupContent.push('<svg class="participation_chart" width=100 height =100></svg>')
+    popupContent.push('<div class="chart_area"><svg class="participation_chart"></svg></div>')
     popupContent.push("<b><br/>Number of voters: </b>" + feature.properties.totalVoters)
     popupContent.push("<b><br/>Yes votes: </b>" + feature.properties.yes)
     popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
