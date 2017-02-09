@@ -31,7 +31,10 @@ function loadGeneralInfo() {
         console.log();
         overlay = L.geoJson($.geo.WKT.parse(data[0].affectedArea.value), {
           style:{weight: 2 ,
-          fillOpacity: 0.5}
+          fillOpacity: 0.5 ,
+          fillColor: 'transparent',
+          color: 'yellow',
+          weight : 5}
         });
         layerControl.addOverlay(overlay, 'Affected Area');
       }
@@ -79,6 +82,10 @@ function sparql2GeoJSON(input) {
     return output;
 }
 
+map.on("baselayerchange", function (e) {
+  overlay.bringToFront();
+});
+
 
 
 
@@ -105,7 +112,7 @@ function getFillColor(feature) {
 function getColor(feature){
      feature == 'yes'   ? '#FED976':
      feature == 'no'   ?'#FFEDA0' :
-                       '#A3FF73';
+                       'red';
 }
 
 
