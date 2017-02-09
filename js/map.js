@@ -13,10 +13,6 @@ map.setMaxBounds([
     [52.2254460954, 7.8524780273]
 ]);
 
-
-
-
-
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     noWrap: true,
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -35,6 +31,7 @@ var legend = L.control({position: 'bottomright'});
 
 legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML +='<strong><center>Legend</center></strong>';
     div.innerHTML += '<i style="background:green"></i> yes <br>'
     div.innerHTML += '<i style="background:red"></i> no <br>'
     div.innerHTML += '<i class="gradient"></i> participation <br>'
@@ -44,4 +41,3 @@ legend.onAdd = function (map) {
 legend.addTo(map);
 
 map.zoomControl.setPosition('bottomright');
-
