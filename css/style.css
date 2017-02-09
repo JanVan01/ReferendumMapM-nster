@@ -31,6 +31,11 @@ html, body, #map {
     border-radius: 5px;
 	  padding: 6px 8px;
 }
+
+.legend_entry{
+  padding-bottom: 2px;
+}
+
 .legend i {
     width: 18px;
     height: 18px;
@@ -48,4 +53,3 @@ html, body, #map {
   background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
-

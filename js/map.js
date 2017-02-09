@@ -32,9 +32,9 @@ var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
     div.innerHTML +='<strong><center>Legend</center></strong>';
-    div.innerHTML += '<i style="background:green"></i> yes <br>'
-    div.innerHTML += '<i style="background:red"></i> no <br>'
-    div.innerHTML += '<i class="gradient"></i> participation <br>'
+    div.innerHTML += '<div class="legend_entry"><i style="background:green"></i> yes </div>'
+    div.innerHTML += '<div class="legend_entry"><i style="background:red"></i> no </div>'
+    div.innerHTML += '<div class="legend_entry"><i class="gradient"></i> participation </div>'
     return div;
 };
 
