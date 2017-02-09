@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xml:lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:owl="http://www.w3.org/2002/07/owl#"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+      xmlns:dcterms="http://purl.org/dc/terms/"
+      xmlns:dct="http://purl.org/dc/terms/"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+      xmlns:wot="http://xmlns.com/wot/0.1/"
+      xmlns:prv="http://purl.org/net/provenance/ns#"
+      xmlns:opmv="http://purl.org/net/opmv/ns#"
+      xmlns:ref="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#"
+      xmlns:geosparql="http://www.opengis.net/ont/geosparql#"
+>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="alternate" type="application/rdf+xml" href="lsc-2011-11-29.rdf" />
+  <link rel="stylesheet" href="css/vocab_style.css" />
+
+  <title>Referendum Vocabulary Specification</title>
+</head>
+
+<body>
+<h1 about="" property="dcterms:title" xml:lang="en">Referendum Vocabulary Specification</h1>
+<div about="" typeof="foaf:Document">
+
+
+
+<div property="rdfs:label" content="Document that defines the Referendum Vocabulary" xml:lang="en"></div>
+  <div rel="foaf:primaryTopic">
+    <div about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#">
+      <div rel="rdf:type" resource="http://purl.org/net/provenance/ns#DataItem"></div>
+      <div rel="rdf:type" resource="http://www.w3.org/2002/07/owl#Ontology"></div>
+      <div property="dcterms:title" content="Referendum Vocabulary namespace" xml:lang="en"></div>
+      <div rel="prv:createdBy">
+	    <div rel="rdf:type" resource="http://purl.org/net/provenance/ns#DataCreation"></div>
+	    <div rel="prv:performedBy" content="Alicja Balfanz"></div>
+	    <div property="prv:performedAt" content="2017-01-23T14:00:00Z" datatype="xsd:dateTime"></div>
+      </div>
+      <div rel="dcterms:creator" content="Alicja Balfanz"></div>
+      <div property="dcterms:created" content="2017-01-23T14:00:00Z" datatype="xsd:dateTime"></div>
+     </div>
+   </div>
+</div>
+
+<h2>23rd of January 2017</h2>
+
+<dl>
+  <dt>Authors:</dt>
+  <dd>
+    Alicja Balfanz
+    (<a href="http://ifgi.uni-muenster.de/">Institute for Geoinformatics</a>, University of Muenster, Germany)
+  </dd>
+  <dd>
+    Sruthi Ketineni
+    (<a href="http://ifgi.uni-muenster.de/">Institute for Geoinformatics</a>, University of Muenster, Germany)
+  </dd>
+  <dd>
+    Salman Khalid
+    (<a href="http://ifgi.uni-muenster.de/">Institute for Geoinformatics</a>, University of Muenster, Germany)
+  </dd>
+  <dd>
+    Laura Meierkort
+    (<a href="http://ifgi.uni-muenster.de/">Institute for Geoinformatics</a>, University of Muenster, Germany)
+  </dd>
+  <dd>
+    Diego Morales
+    (<a href="http://ifgi.uni-muenster.de/">Institute for Geoinformatics</a>, University of Muenster, Germany)
+  </dd>
+  <dd>
+    Jan van Zadelhoff
+    (<a href="http://ifgi.uni-muenster.de/">Institute for Geoinformatics</a>, University of Muenster, Germany)
+  </dd>
+</dl>
+
+<p class="copyright">Copyright &copy; 2017 - 2017 Alicja Balfanz,  , Institute for Geoinformatics, University of Muenster, Germany.</p>
+
+<p><a rel="license" href="http://creativecommons.org/licenses/by/1.0/"></a>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/1.0/">Creative Commons License</a>. This copyright applies to the <em>Referendum Vocabulary</em> and accompanying documentation.</p>
+
+<p about="" resource="http://www.w3.org/TR/rdfa-syntax" rel="dcterms:conformsTo">
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml-rdfa.png" style="border: 0pt none; float: right" alt="Valid XHTML + RDFa" /> </a>
+  Referendum Vocabulary Specification relies on W3C's <a href="http://www.w3.org/RDF/">RDF</a> technology, an open Web standard that can be freely used by anyone.</p>
+
+  <p>This visual layout and structure of the specification was adapted from the <a href="http://linkedscience.org/lsc/ns/">Linked Science Core Vocabulary Specification</a> edited by Tomi Kauppinen, Alkyoni Baglatzi, Carsten Keßler.</p>
+
+<hr />
+
+<div>
+<h2 id="sec-abstract">Abstract</h2>
+
+<p>
+  <span about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#" property="dcterms:description"> REF, the Referendum Vocabulary,was created in order to describe referendum events and the connected data. It might be applied for discribing other voting events as well.
+    The REF vocabulary allows to describe a referendum event with the theme of the voting, as well as the affected area by the voting. Further more it enables a description of the area,
+    the voting takes place - a district - and the description of the voting data including how many people were allowed to vote, how many "Yes"-votes and "No"-votes were given. Invalid votes can be described as well.
+</span>
+</p>
+</div>
+<hr />
+
+<div class="status">
+<h2 id="sec-status">Status of this document</h2>
+
+<p><strong>NOTE:</strong> <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document.</em></p>
+
+<p>This specification is an evolving document. This document may be updated or added to based on implementation experience, but no commitment is made by the authors regarding future updates. This document is generated by combining a machine-readable <a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#">Referendum Vocabulary Namespace</a> expressed in RDF/XML with a specification template and a set of per-term documents.</p>
+</div>
+
+<h2 id="sec-toc">Table of contents</h2>
+<ol>
+  <li><a href="#sec-intro">Introduction</a></li>
+  <li><a href="#sec-glance">The Referendum Vocabulary at a glance</a></li>
+  <li><a href="#sec-desc">Description about REF vocabulary</a></li>
+  <ol>
+      <li><a href="#sec-extension">Evolution and extension of REF</a></li>
+  </ol>
+  <li><a href="#sec-specification">Cross-reference for REF classes and properties</a></li>
+</ol>
+
+<hr />
+
+<h2 id="sec-intro">1. Introduction</h2>
+  <p>The Linked Science Core Vocabulary is defined as a set of classes and properties.</p>
+
+<p>The XML Namespace URI that should be used by implementations of this specification is:</p>
+
+<ul>
+  <li><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#</a> - The Namespace of the
+Referendum Vocabulary
+</li>
+</ul>
+
+<p>The prefix the Referendum vocabulary is "ref":</p>
+
+<ul>
+  <li><pre>@prefix ref: &lt;http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#&gt; .</pre>
+</li>
+</ul>
+
+
+<div class="glance">
+<h2 id="sec-glance">2. The Referendum Vocabulary at a glance</h2>
+
+<p>An alphabetical index of terms from the Referendum Vocabulary, by class and by property, are given below. All the terms are hyperlinked to their detailed description for quick reference.</p>
+
+<div class="box">
+
+
+
+<p>Classes: |
+  <a href="#District">District</a> |
+  <a href="#Referendum">Referendum</a> |
+</p>
+
+<p>Properties: |
+
+<a href="#affectedArea">affectedArea</a> |
+<a href="#isAbout">isAbout</a> |
+<a href="#hasInvalidVotes">hasInvalidVotes</a> |
+<a href="#hasNoVotes">hasNoVotes</a> |
+
+<a href="#hasSubDistrict">hasSubDistrict</a> |
+<a href="#hasTotalVoters">hasTotalVoters</a> |
+
+<a href="#hasVotingDistrict">hasVotingDistrict</a> |
+<a href="#hasYesVotes">hasYesVotes</a> |
+
+</p>
+
+</div>
+
+<img src="ref.png"></img>
+
+</div>
+
+<div class="description">
+  <h2 id="sec-desc">3. Descriptions about REF</h2>
+</div>
+
+  <p>The REF definitions presented here are written using a computer language (RDF/OWL) for simplifying the processing of basic infromation about the terms of the Referendum Vocabulary and furthermore about the things beeing discribed by these terms using REF, by software.</p>
+
+
+<h3 id="sec-extension">3.1. Evolution and extension of REF</h3>
+
+<p>The Referendum Vocabulary is identified by the namespace URI "http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#".</p>
+
+<p>Revisions and extensions of REF are conducted through edits to the namespace document, which by convention is published on the Web at the namespace URI.</p>
+
+  <p>The properties and types defined here provide some basic concepts for describing information relevant about voting events. Other vocabularies (e.g. AIISO - Academic Institution Internal Structure Ontology, BIBO - The Bibliographic Ontology, W3C Ontology for Media Resources, <a href="http://www.w3.org/TR/owl-time/">the Time Ontology in OWL</a>, the Open Provenance Model Vocabulary, <a href="http://sempublishing.svn.sourceforge.net/viewvc/sempublishing/SPAR/index.html">Semantic Publishing and Referencing Ontologies (SPAR)</a>, <a href="http://swan.mindinformatics.org/ontology.html">SWAN Ontology</a>, <a href="http://www.opengeospatial.org/standards/geosparql.html"> GeoSPARQL</a>  etc.) can also be mixed in with REF terms. REF is designed to be extended.</p>
+
+
+<div class="overview">
+  <h2 id="sec-specification">4. Cross-reference for REF classes and properties</h2>
+</div>
+
+
+<h2>Classes:</h2>
+
+
+
+<div class="specterm" id="Referendum"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum" typeof="owl:Class">
+  <h3>Class: Referendum</h3>
+  <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref"></div>
+  <div property="rdfs:label" content="Referendum" xml:lang="en"></div>
+  <p class="TermComment" property="rdfs:comment" xml:lang="en">Any kind of referendum event. This vocabulary might be used for e.g. describing a local referendum.
+    <br> For example: The referendum of November 6th 2016 in Muenster can be classified with the class Referendum.
+</p>
+  <table style="th { float: top; }">
+    <tbody>
+      <tr><th>identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum</a></td></tr>
+      </tbody>
+    </table>
+
+  <p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+  <br/>
+</div>
+
+<div class="specterm" id="District"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District" typeof="owl:Class">
+  <h3>Class: District</h3>
+  <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref"></div>
+  <div property="rdfs:label" content="District" xml:lang="en"></div>
+  <p class="TermComment" property="rdfs:comment" xml:lang="en">Any kind of district, e.g. a city district.
+    <br> For example: The voting of the referendum of November 6th 2016 in Muenster took place in different districts of the cities which can be classified by District.
+</p>
+  <table style="th { float: top; }">
+    <tbody>
+      <tr><th>identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District</a></td></tr>
+      </tbody>
+    </table>
+  <p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+  <br/>
+</div>
+
+
+<h2>Properties:</h2>
+
+<div class="specterm" id="isAbout"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#isAbout" typeof="owl:ObjectProperty">
+
+  <h3>Property: isAbout</h3>
+
+  <div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#isAbout"></div>
+  <div property="rdfs:label" content="isAbout" xml:lang="en"></div>
+  <p class="TermComment" property="rdfs:comment" xml:lang="en">Any kind of subject of a voting event.
+    <br> For example: The referendum of November 6th 2016 in Muenster had the the subject of opening shops on additional Sundays in the Muenster city center.
+  </p>
+  <table style="th { float: top; }">
+    <tbody>
+      <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#isAbout">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#isAbout</a></td></tr>
+
+      <tr><th>OWL Type:</th><td>ObjectProperty</td></tr>
+      <tr><th>Domain:</th>
+	  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum">ref:Referendum</a><div rel="rdfs:domain" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum"></div></td>
+	  </tr>
+      <tr>
+	  <th>Range:</th>
+	  <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><div rel="rdfs:range" resource="http://www.w3.org/2001/XMLSchema#string"></div></td>
+	  </tr>
+
+      </tbody>
+    </table>
+  <p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+  <br/>
+</div>
+
+<div class="specterm" id="affectedArea"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#about" typeof="owl:ObjectProperty">
+
+  <h3>Property: affectedArea</h3>
+
+<div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#affectedArea"></div>
+<div property="rdfs:label" content="affectedArea" xml:lang="en"></div>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">Any area that will be affected by the result of a voting event.
+  <br> For example: The referendum of November 6th 2016 in Muenster affected the shops in the city centre and parts of the street Hammerstr.
+ </p>
+<table style="th { float: top; }">
+  <tbody>
+    <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#affectedArea">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#affectedArea</a></td></tr>
+
+    <tr><th>OWL Type:</th><td>ObjectProperty</td></tr>
+    <tr><th>Domain:</th>
+  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum">ref:Referendum</a><div rel="rdfs:domain" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum"></div></td>
+  </tr>
+    <tr>
+  <th>Range:</th>
+  <td><a href="http://www.opengis.net/ont/geosparql#Geometry">geosparql:Geometry</a><div rel="rdfs:range" resource="http://www.opengis.net/ont/geosparql#Geometry"></div></td>
+  </tr>
+
+    </tbody>
+  </table>
+<p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+<br/>
+</div>
+
+<div class="specterm" id="hasVotingArea"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasVotingArea" typeof="owl:ObjectProperty">
+
+  <h3>Property: hasVotingArea</h3>
+
+
+<div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasVotingDistrict"></div>
+<div property="rdfs:label" content="hasVotingDistrict" xml:lang="en"></div>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">Any districts which are allowed to take part in the voting event.
+  <br> For example: The referendum of November 6th 2016 in Muenster had more voting districts than just the area which was affected by the referendum. This can be expressed by using hasVotingDistrict.
+</p>
+<table style="th { float: top; }">
+  <tbody>
+    <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasVotingDistrict">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasVotingDistrict</a></td></tr>
+
+    <tr><th>OWL Type:</th><td>ObjectProperty</td></tr>
+    <tr><th>Domain:</th>
+  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum">ref:Referendum</a><div rel="rdfs:domain" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#Referendum"></div></td>
+  </tr>
+    <tr>
+  <th>Range:</th>
+  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District">ref:District</a><div rel="rdfs:range" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District"></div></td>
+  </tr>
+
+    </tbody>
+  </table>
+<p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+<br/>
+</div>
+
+<div class="specterm" id="hasSubDistrict"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasSubDistrict" typeof="owl:ObjectProperty">
+
+  <h3>Property: hasSubDistrict</h3>
+
+
+<div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasSubDistrict"></div>
+<div property="rdfs:label" content="hasSubDistrict" xml:lang="en"></div>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">Any subdevision of districts which are allowed to vote, in order to obtain a finer granuality of the voting results.
+  <br> For example: The results from the referendum of November 6th 2016 in Muenster are available in a finer granuality than just the districts. This can be expressed by using hasSubDistrict.
+</p>
+<table style="th { float: top; }">
+  <tbody>
+    <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasSubDistrict">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasSubDistrict</a></td></tr>
+
+    <tr><th>OWL Type:</th><td>ObjectProperty</td></tr>
+    <tr><th>Domain:</th>
+  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District">ref:District</a><div rel="rdfs:domain" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District"></div></td>
+  </tr>
+    <tr>
+  <th>Range:</th>
+  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District">ref:District</a><div rel="rdfs:range" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District"></div></td>
+  </tr>
+
+    </tbody>
+  </table>
+<p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+<br/>
+</div>
+
+<div class="specterm" id="hasTotalVoters"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasTotalVoters" typeof="owl:ObjectProperty">
+
+  <h3>Property: hasTotalVoters</h3>
+
+
+<div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasTotalVoters"></div>
+<div property="rdfs:label" content="hasTotalVoters" xml:lang="en"></div>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">Any number of people who are alowed to vote during the particulat voting event.
+  <br> For example: Not all people are allowed to vote at every voting event. During the referendum of November 6th 2016 in Muenster only citzien aged 18. and above of the city were allowed to vote.
+</p>
+<table style="th { float: top; }">
+  <tbody>
+    <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasTotalVoters">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasTotalVoters</a></td></tr>
+
+    <tr><th>OWL Type:</th><td>DatatypeProperty</td></tr>
+    <tr><th>Domain:</th>
+  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District">ref:District</a><div rel="rdfs:domain" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District"></div></td>
+  </tr>
+    <tr>
+  <th>Range:</th>
+  <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a><div rel="rdfs:range" resource="http://www.w3.org/2001/XMLSchema#integer"></div></td>
+  </tr>
+
+    </tbody>
+  </table>
+<p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+<br/>
+</div>
+
+<div class="specterm" id="hasYesVoters"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasYesVoters" typeof="owl:ObjectProperty">
+
+  <h3>Property: hasYesVoters</h3>
+
+<div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasYesVotes"></div>
+<div property="rdfs:label" content="hasYesVotes" xml:lang="en"></div>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">The number of people who voted with "YES" during a voting event.
+  <br> For example: The referendum of November 6th 2016 in Muenster the voters were allowed to choose between "Yes" and "No", and the number of "Yes"-votes can be expressed by this property.
+</p>
+<table style="th { float: top; }">
+  <tbody>
+    <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasYesVotes">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasYesVotes</a></td></tr>
+
+    <tr><th>OWL Type:</th><td>DatatypeProperty</td></tr>
+    <tr><th>Domain:</th>
+  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District">ref:District</a><div rel="rdfs:domain" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District"></div></td>
+  </tr>
+    <tr>
+  <th>Range:</th>
+  <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a><div rel="rdfs:range" resource="http://www.w3.org/2001/XMLSchema#integer"></div></td>
+  </tr>
+
+    </tbody>
+  </table>
+<p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+<br/>
+</div>
+
+<div class="specterm" id="hasNoVotes"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasNoVotes" typeof="owl:ObjectProperty">
+
+  <h3>Property: hasNoVotes</h3>
+
+
+<div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasNoVotes"></div>
+<div property="rdfs:label" content="hasNoVotes" xml:lang="en"></div>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">The number of people who voted with "NO" during a voting event.
+  <br>For example: The referendum of November 6th 2016 in Muenster the voters were allowed to choose between "Yes" and "No", and the number of "No"-votes can be expressed by this property.
+</p>
+<table style="th { float: top; }">
+  <tbody>
+    <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasNoVotes">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasNoVotes</a></td></tr>
+
+    <tr><th>OWL Type:</th><td>DatatypeProperty</td></tr>
+    <tr><th>Domain:</th>
+  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District">ref:District</a><div rel="rdfs:domain" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District"></div></td>
+  </tr>
+    <tr>
+  <th>Range:</th>
+  <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a><div rel="rdfs:range" resource="http://www.w3.org/2001/XMLSchema#integer"></div></td>
+  </tr>
+
+    </tbody>
+  </table>
+<p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+<br/>
+</div>
+
+<div class="specterm" id="hasInvalidVotes"
+     about="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasInvalidVotes" typeof="owl:ObjectProperty">
+
+  <h3>Property: hasInvalidVotes</h3>
+
+
+<div rel="rdfs:isDefinedBy" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasInvalidVotes"></div>
+<div property="rdfs:label" content="hasInvalidVotes" xml:lang="en"></div>
+<p class="TermComment" property="rdfs:comment" xml:lang="en">The number of people made their voting invalid during the voting event.
+  <br>For example: The referendum of November 6th 2016 in Muenster some people decided to make their vote invalid, so this can be expressed by hasInvalidVotes.
+</p>
+<table style="th { float: top; }">
+  <tbody>
+    <tr><th>Identifier:</th><td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasInvalidVotes">http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#hasInvalidVotes</a></td></tr>
+
+    <tr><th>OWL Type:</th><td>DatatypeProperty</td></tr>
+    <tr><th>Domain:</th>
+  <td><a href="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District">ref:District</a><div rel="rdfs:domain" resource="http://course.geoinfo2016.org/G1/vocabulary/vocabulary/ref#District"></div></td>
+  </tr>
+    <tr>
+  <th>Range:</th>
+  <td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a><div rel="rdfs:range" resource="http://www.w3.org/2001/XMLSchema#integer"></div></td>
+  </tr>
+
+    </tbody>
+  </table>
+<p style="float: right; font-size: small;">[<a href="#sec-glance">back to overview</a>]</p>
+<br/>
+</div>
+
+
+
+      </tbody>
+    </table>
+
+  <br/>
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8367411-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

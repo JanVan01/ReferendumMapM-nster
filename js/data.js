@@ -69,7 +69,10 @@ function sparql2GeoJSON(input) {
             properties: {}
         };
         feature.geometry = $.geo.WKT.parse(entry.wkt.value);
-        feature.properties.name = entry.name.value;
+        if (feature.geometry.coordinates.length == 0){
+			feature.geometry = manuallyGetGeometry(entry.wkt.value)
+		}
+		feature.properties.name = entry.name.value;
         feature.properties.totalVoters = parseInt(entry.total.value);
         feature.properties.yes = parseInt(entry.yes.value);
         feature.properties.no = parseInt(entry.no.value);
@@ -82,10 +85,28 @@ function sparql2GeoJSON(input) {
     return output;
 }
 
+function manuallyGetGeometry(wkt){
+	var geometry = {
+		"type": "Polygon" ,
+		"coordinates":[]
+	}
+
+	var slice = wkt.slice(16,-3);
+	var splitlist = slice.split("),(");
+	for (var i = 0 ; i < splitlist.length ; i++){
+		var splitlist2 = splitlist[i].split(",");
+		geometry.coordinates[i] = [];
+		for( var j = 0 ; j < splitlist2.length; j++){
+			var coordinates = splitlist2[j].split(" ")
+			geometry.coordinates[i][j] = coordinates
+		}
+	}
+	return geometry;
+}
+
 map.on("baselayerchange", function (e) {
   overlay.bringToFront();
 });
-
 
 function getStyle(feature) {
     return {
@@ -99,9 +120,9 @@ function getStyle(feature) {
 
 function getFillColor(feature) {
     if(feature.properties.no > feature.properties.yes) {
-        return 'red' 
-    } else { 
-        return 'green' 
+        return 'red'
+    } else {
+        return 'green'
     }
 }
 

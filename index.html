@@ -9,15 +9,14 @@
   <link rel="stylesheet" href="css/nv.d3.css" type="text/css"/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"/>
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> 
-  <link rel="stylesheet" href="css/L.Control.Window.css" />  
+  <link rel="stylesheet" href="css/L.Control.Window.css" />
 
-  <script src="js/L.Control.Window.js"></script> 
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="js/L.Control.Window.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="http://code.jquerygeo.com/jquery.geo-1.0.0-rc1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
   <script src="js/nv.d3.js"></script>
-  
   <script src="js/leaflet-sidebar.min.js"></script>
 </head>
 <body>
@@ -28,7 +27,7 @@
                 <li><a href="#home" role="tab"><i class="fa fa-home"></i></a></li>
 				<li><a href="#contact" role="tab"><i class="fa fa-info-circle"></i></a></li>
                 <li><a href="#help" role="tab"><i class="fa fa-question"></i></a></li>
-                
+
             </ul>
         </div>
 
@@ -41,9 +40,9 @@
 				<h2>Referendum Map Münster</h2>
                 <p align ="justify">Welcome to the Referendum Map Münster. Here you are provided
                  with infomation regarding the recent referendum that took place
-				         in Münster on November 6th in 2016. The referendum took place to decide whether some shops 
-                 should be open on three additional Sundays or not. 
-                 The affected shops are those in the two main shopping streets in the inner city 
+				         in Münster on November 6th in 2016. The referendum took place to decide whether some shops
+                 should be open on three additional Sundays or not.
+                 The affected shops are those in the two main shopping streets in the inner city
                  (Salzstraße and Prinzipalmarkt).</p>
 
                 <p align ="justify">The polling stations were well distributed throughout Münster
@@ -53,7 +52,7 @@
                  number of people that are eligible for voting, the number of people
                  that actually voted, invalid votes, valid votes, number of people in
                  favor of this and number of people against this decision. </p>
-                
+
                 <p align ="justify">Our representation shows the major areas of Münster and the colours (Green or Red)
                  of the corresponding areas denote the overall result from that particular station.
                  For example the areas highlighted as green, show that majority of the voters in that
@@ -66,41 +65,38 @@
                 <h1 class="sidebar-header">Help<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 				<p align ="justify"> Your choice Counts!! helps you to visualize the results of the referendum of Muenster. </p>
 				<p align = "justify" >In order to view the results of a particular district click on the district which you are interested in.
-				Then a pop up displays with a piechart showing the number of people that are favour towards opening the 
+				Then a pop up displays with a piechart showing the number of people that are favour towards opening the
 				shops on sundays and number of people that are againest to it.</p>
 				<ul><li>Color <b>green</b> indicates that the maximum number of people are in <b>favour of opening </b>the shops on sundays</li>
 				<br>
 				<li>Color <b> Red </b>indicates that the maximum number of people are <b>againest to opening </b> the shops on sundays</li></ul>
-				
+
             </div>
 
             <div class="sidebar-pane" id="contact">
                 <h1 class="sidebar-header">About<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <h2> Your Choice Counts!</h2>
                 <p align ="justify">The project was part of the masters course "Geoinformation in society" that took place
-                    at the Institute for Geoinformatics. The course "Geoinforamtion in Society" was about turning existing 
+                    at the Institute for Geoinformatics. The course "Geoinforamtion in Society" was about turning existing
 					data to geographic linked open data and build a software application which consumes data and to visualize it.
                 </p>
 
                 <h2> The Institute for Geoinformatics </h2>
-                The "Institute for Geoinformatics" (Ifgi) is an institution of the University of Münster.<br>  
+                The "Institute for Geoinformatics" (Ifgi) is an institution of the University of Münster.<br>
                 Heisenbergstr. 2, 48149 Muenster
 
                 <h2> More </h2>
-                <p align ="justify"> If you want to know more about the Project, and how it exactly works, please follow the 
+                <p align ="justify"> If you want to know more about the Project, and how it exactly works, please follow the
                     <a href="https://github.com/JanVan01/ReferendumMapMuenster">Link</a>
                     <br><br>
                     Furthermore, many thanks to the city of Münster and the Office for Urban Development,
                     city planning and traffic planning for providing data. </p>
       </div>
-            
+
         </div>
     </div>
 
     <div id="map" class="sidebar-map"></div>
-    
-    
-
 </body>
 <script src="js/map.js"></script>
 <script src="js/data.js"></script>
