@@ -153,7 +153,7 @@ function onEachFeature(feature, layer) {
 
     if (feature.properties.description){
       popupContent.push("<br/><br/><b>Description</b><br/>")
-      popupContent.push(feature.properties.description)
+      popupContent.push('<div style="text-align: justify">' + feature.properties.description + '</div>')
 
     }
     layer.bindPopup("<p>" + popupContent.join("") + "</p>");
