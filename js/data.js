@@ -87,8 +87,6 @@ map.on("baselayerchange", function (e) {
 });
 
 
-
-
 function getStyle(feature) {
     return {
         fillColor: getFillColor(feature),
@@ -99,20 +97,12 @@ function getStyle(feature) {
     };
 }
 
-
 function getFillColor(feature) {
-    if(feature.properties.no > feature.properties.yes){
+    if(feature.properties.no > feature.properties.yes) {
         return 'red' 
-    }
-    else{ 
+    } else { 
         return 'green' 
-        }
-}
-
-function getColor(feature){
-     feature == 'yes'   ? '#FED976':
-     feature == 'no'   ?'#FFEDA0' :
-                       'red';
+    }
 }
 
 
@@ -171,18 +161,4 @@ function onEachFeature(feature, layer) {
     layer.on({
         click: chart,
     });
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
