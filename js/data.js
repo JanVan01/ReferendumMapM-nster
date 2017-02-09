@@ -79,9 +79,6 @@ function sparql2GeoJSON(input) {
     return output;
 }
 
-
-
-
 function getStyle(feature) {
     return {
         fillColor: getFillColor(feature),
@@ -93,7 +90,11 @@ function getStyle(feature) {
 }
 
 function getFillColor(feature) {
-    return feature.properties.no > feature.properties.yes ? 'red' : 'green';
+    if(feature.properties.no > feature.properties.yes) {
+        return 'red' 
+    } else { 
+        return 'green' 
+    }
 }
 
 function getOpacity(feature) {
@@ -151,6 +152,4 @@ function onEachFeature(feature, layer) {
     layer.on({
         click: chart,
     });
-    
-    
 }
