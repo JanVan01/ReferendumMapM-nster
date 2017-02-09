@@ -22,6 +22,12 @@ $(document).ready(function() {
   loadGeneralInfo()
 });
 
+  map.on('baselayerchange', function(layer) {
+    if(layer.name == 'Stimmbezirke') {
+    alert('No votes throught letters were conducted for this layer');
+  }
+});
+
 function loadGeneralInfo() {
   var url = baseUrl + '_general' + authentication;
   $.ajax({
