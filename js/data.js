@@ -24,7 +24,7 @@ $(document).ready(function() {
 
   map.on('baselayerchange', function(layer) {
     if(layer.name == 'Stimmbezirke') {
-    alert('The dataset for this level of detail of the visualization does not contain any information about letter votes. As a result the shown participation numbers are only based on the number of people who voted in person. Thus the participation numbers apear to be lower compared to other two layers where the letter votes are included.');
+    alert('The dataset for this level of detail of the visualization does not contain any information about letter votes. As a result the shown participation numbers are only based on the number of people who voted in person. Thus the participation numbers apear to be lower compared to the other two layers where the letter votes are included.');
   }
 });
 
