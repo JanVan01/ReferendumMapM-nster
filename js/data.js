@@ -31,7 +31,10 @@ function loadGeneralInfo() {
         console.log();
         overlay = L.geoJson($.geo.WKT.parse(data[0].affectedArea.value), {
           style:{weight: 2 ,
-          fillOpacity: 0.5}
+          fillOpacity: 0.5 ,
+          fillColor: 'transparent',
+          color: 'yellow',
+          weight : 5}
         });
         layerControl.addOverlay(overlay, 'Affected Area');
       }
@@ -101,6 +104,10 @@ function manuallyGetGeometry(wkt){
 	return geometry;
 }
 
+map.on("baselayerchange", function (e) {
+  overlay.bringToFront();
+});
+
 function getStyle(feature) {
     return {
         fillColor: getFillColor(feature),
@@ -118,6 +125,7 @@ function getFillColor(feature) {
         return 'green'
     }
 }
+
 
 function getOpacity(feature) {
     return (feature.properties.no + feature.properties.yes + feature.properties.invalid) * 3 / feature.properties.totalVoters;
