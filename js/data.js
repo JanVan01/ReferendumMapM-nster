@@ -24,7 +24,7 @@ $(document).ready(function() {
 
   map.on('baselayerchange', function(layer) {
     if(layer.name == 'Stimmbezirke') {
-    alert('No votes throught letters were conducted for this layer');
+    alert('No votes throught letters were conducted for this layer. As a result we see low opacity, which depends upon the fraction (total number of people that voted/total number of people in the area) of people that voted. For the other two layers, voting through letters was also conducted, hence you see a higher opacity of every area in those layers as compared to areas this layer');
   }
 });
 
