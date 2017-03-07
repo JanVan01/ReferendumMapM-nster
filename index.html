@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Referendum Map of Muenster</title>
-	<meta charset="UTF-8"/>
+    <title>Referendum Map of Muenster</title>
+    <meta charset="UTF-8" />
 
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-  <link rel="stylesheet" href="css/leaflet-sidebar.min.css"/>
-  <link rel="stylesheet" href="css/nv.d3.css" type="text/css"/>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"/>
-  <link rel="stylesheet" href="css/L.Control.Window.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="css/leaflet-sidebar.min.css" />
+    <link rel="stylesheet" href="css/nv.d3.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/L.Control.Window.css" />
 
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-  <script src="js/L.Control.Window.js"></script>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <script src="http://code.jquerygeo.com/jquery.geo-1.0.0-rc1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
-  <script src="js/nv.d3.js"></script>
-  <script src="js/leaflet-sidebar.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="js/L.Control.Window.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="http://code.jquerygeo.com/jquery.geo-1.0.0-rc1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="js/nv.d3.js"></script>
+    <script src="js/leaflet-sidebar.min.js"></script>
 </head>
+
 <body>
     <div id="sidebar" class="sidebar collapsed">
         <!-- Nav tabs -->
         <div class="sidebar-tabs">
             <ul role="tablist">
                 <li><a href="#home" role="tab"><i class="fa fa-home"></i></a></li>
-				<li><a href="#contact" role="tab"><i class="fa fa-info"></i></a></li>
+                <li><a href="#contact" role="tab"><i class="fa fa-info"></i></a></li>
                 <li><a href="#help" role="tab"><i class="fa fa-question"></i></a></li>
 
             </ul>
@@ -36,87 +38,71 @@
             <div class="sidebar-pane" id="home">
                 <h1 class="sidebar-header">Home<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <h2>Your Choice Counts!!</h2>
-				<p>A framework for displaying results of the referendum of Münster.</p>
-				<h2>Referendum Map Münster</h2>
-                <p align ="justify">Welcome to the Referendum Map Münster. Here you are provided
-                 with infomation regarding the recent referendum which took place
-				         in Münster on November 6th in 2016. The purpose of the referendum was the decision about whether some shops
-                 should be open on two additional Sundays - for Hansetag and Herbstsend - or not.
-                 The question of the referendum was expressed in a manner that a YES-vote means shops should stay closed during those events
-                 and a NO-vote means shops should be allowed to open on these two special Sundays.
-                 The affected shops are those of the city center and part of the Hammerstraße.</p>
+                <p>A framework for displaying results of the referendum of Münster.</p>
+                <h2>Referendum Map Münster</h2>
+                <p align="justify">Welcome to the Referendum Map Münster. Here you are provided with infomation regarding the recent referendum which took place in Münster on November 6th in 2016. The purpose of the referendum was the decision about whether some shops should
+                    be open on two additional Sundays - for Hansetag and Herbstsend - or not. The question of the referendum was expressed in a manner that a YES-vote means shops should stay closed during those events and a NO-vote means shops should
+                    be allowed to open on these two special Sundays. The affected shops are those of the city center and part of the Hammerstraße.</p>
 
-                <p align ="justify">
-                 Here you can find a visual representation of the results of the referendum displayed according to the city districts.
-                 There are two additional layers vizualizing the data for finer devision of the city Münster than the city districts.
-                 The data presents the
-                 number of people that were eligible for voting, the number of people
-                 who actually voted, invalid votes, valid votes, number of people in
-                 favor of this decision and the number of people against it. </p>
+                <p align="justify">
+                    Here you can find a visual representation of the results of the referendum displayed according to the city districts. There are two additional layers vizualizing the data for finer devision of the city Münster than the city districts. The data presents
+                    the number of people that were eligible for voting, the number of people who actually voted, invalid votes, valid votes, number of people in favor of this decision and the number of people against it. </p>
 
-                <p align ="justify">The representation shows the city districts of Münster and the colours (green or red)
-                 of the corresponding areas denote the overall result from that particular area.
-                 For example the areas highlighted green show that the majority of voters of this
-                 area voted in support of the shops being closed on additional Sundays and areas colored red
-                 show the opposite outcome. Results are furthermore displayed in the form of a pie chart in the pop-up.</p>
+                <p align="justify">The representation shows the city districts of Münster and the colours (green or red) of the corresponding areas denote the overall result from that particular area. For example the areas highlighted green show that the majority of voters
+                    of this area voted in support of the shops being closed on additional Sundays and areas colored red show the opposite outcome. Results are furthermore displayed in the form of a pie chart in the pop-up.</p>
 
             </div>
 
             <div class="sidebar-pane" id="help">
                 <h1 class="sidebar-header">Help<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 
-				<p align ="justify"> <b>Your choice Counts!!</b> helps you to visualize results of a referendum event. </p>
-				<p align = "justify"> In order to view the results of a particular voting district click on the district you are interested in.
-				A pop-up displays a pie chart showing the number of people who voted in favour of the referendums question and the
-        number of people being against it, including the invalid votes as well.<br/>
-        </p>
-				<ul><li>Color <b>green</b> indicates that the majority of voters is in <b>favour of the question</b> of the referendum</li>
-				<br>
-				<li>Color <b>red</b> indicates that the majority of voters is <b>against the question</b> of the referendum</li></ul>
-        <p align = "justify"> The intensity of the colours depends on the participation at the voting for each area, meaning stronger colours for hight participation and for lower participation vice versa.<br/>
-        </p>
-        <p align = "justify" >If available, the pop-up also can contain additional information about the chosen area.
-        </p>
-        <p align = "justify" >The <b>layer selection</b> in the top right corner allows to switch between different layers which differ in their
-        level of detail of the voting results and gives the possibility to enable or disable the display of the affected area.
-        </p>
-        <ul><li> The layer <b>Stadteile</b> represents the division of the city with the lowest level of detail and can be translated into English with city districts</li>
-				<br>
-				<li>The layer <b>Kommunalwahlbezirke</b> is the devision of the city with a medium level of detail and can be translated into English with local election districts</li>
-        <br>
-        <li> The layer <b>Stimmbezirke</b> represents the division of the city with the highest level of detail and can be translated into English with constituency</li></ul>
+                <p align="justify"> <b>Your choice Counts!!</b> helps you to visualize results of a referendum event. </p>
+                <p align="justify"> In order to view the results of a particular voting district click on the district you are interested in. A pop-up displays a pie chart showing the number of people who voted in favour of the referendums question and the number of people
+                    being against it, including the invalid votes as well.<br/>
+                </p>
+                <ul>
+                    <li>Color <b>green</b> indicates that the majority of voters is in <b>favour of the question</b> of the referendum</li>
+                    <br>
+                    <li>Color <b>red</b> indicates that the majority of voters is <b>against the question</b> of the referendum</li>
+                </ul>
+                <p align="justify"> The intensity of the colours depends on the participation at the voting for each area, meaning stronger colours for hight participation and for lower participation vice versa.<br/>
+                </p>
+                <p align="justify">If available, the pop-up also can contain additional information about the chosen area.
+                </p>
+                <p align="justify">The <b>layer selection</b> in the top right corner allows to switch between different layers which differ in their level of detail of the voting results and gives the possibility to enable or disable the display of the affected area.
+                </p>
+                <ul>
+                    <li> The layer <b>Stadteile</b> represents the division of the city with the lowest level of detail and can be translated into English with city districts</li>
+                    <br>
+                    <li>The layer <b>Kommunalwahlbezirke</b> is the devision of the city with a medium level of detail and can be translated into English with local election districts</li>
+                    <br>
+                    <li> The layer <b>Stimmbezirke</b> represents the division of the city with the highest level of detail and can be translated into English with constituency</li>
+                </ul>
 
-             </div>
+            </div>
 
             <div class="sidebar-pane" id="contact">
                 <h1 class="sidebar-header">About<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <h2> Your Choice Counts!!</h2>
-                <p align ="justify">The project was part of the master course "Geoinformation in Society" that took place
-                    at the Institute for Geoinformatics. The course "Geoinforamtion in Society" aimed at turning existing
-					data to geographic linked open data and building a software application which consumes data together with its visualization.
+                <p align="justify">The project was part of the master course "Geoinformation in Society" that took place at the Institute for Geoinformatics. The course "Geoinforamtion in Society" aimed at turning existing data to geographic linked open data and building
+                    a software application which consumes data together with its visualization.
                 </p>
 
-                <h2> The Institute for Geoinformatics </h2>
-                The "Institute for Geoinformatics" (Ifgi) is an institution of the University of Münster.<br>
-                <br>
-                Institute for Geoinformatics<br>
-                Heisenbergstr. 2<br>
-                48149 Muenster
+                <h2> The Institute for Geoinformatics </h2> The "Institute for Geoinformatics" (Ifgi) is an institution of the University of Münster.<br>
+                <br> Institute for Geoinformatics<br> Heisenbergstr. 2<br> 48149 Muenster
 
                 <h2> More </h2>
-                <p align ="justify"> If you would like to know more about the project and get an insight into how it exactly works, please follow the
+                <p align="justify"> If you would like to know more about the project and get an insight into how it exactly works, please follow the
                     <a href="https://github.com/JanVan01/ReferendumMapMuenster">link</a>.
-                    <br><br>
-                    Furthermore, many thanks to the city of Münster and the Office for Urban Development,
-                    city planning and traffic planning for providing data. </p>
-      </div>
+                    <br><br> Furthermore, many thanks to the city of Münster and the Office for Urban Development, city planning and traffic planning for providing data. </p>
+            </div>
 
         </div>
     </div>
 
     <div id="map" class="sidebar-map"></div>
 </body>
-<script src="js/map.js"></script>
 <script src="js/data.js"></script>
+<script src="js/map.js"></script>
 
 </html>
