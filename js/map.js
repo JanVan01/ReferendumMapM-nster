@@ -27,7 +27,7 @@ L.control.window(map, {
         maxWidth: 400,
         modal: true
     })
-    .content('</br><p>Here you will be provided with infomation regarding the recent referendum that took place in Münster on November 6th in 2016. Just click on the district that you want to know the Yes, No and Invalid votes.</p>')
+    .content('</br><p>Here you will be provided with infomation regarding the recent referendum that took place in Münster on November 6th in 2016. The question of the referendum was if shops should NOT be opened on two additional sundays. For more information go to the Help-Section. For the results just click on the district that you want to know the Yes, No and Invalid votes.</p>')
     .prompt({
         callback: function() {}
     })
