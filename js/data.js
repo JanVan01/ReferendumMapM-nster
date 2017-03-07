@@ -6,6 +6,7 @@ var layerEndpoints = {
 }
 var authentication = '?authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfbmFtZSI6IlJlZmVyZW5kdW0gTWFwIE3DvG5zdGVyIiwiaWF0IjoxNDg0NTc5NTUzfQ.AP0vY49C9NNtHEo6ZuDpqLgv6ATeWbIcPSJKc8-lljI'
 
+// loads the affectedArea and calls the callback with a geojson representation of it
 function loadAffectedArea(callback) {
     var url = baseUrl + '_general' + authentication;
     $.ajax({
@@ -17,10 +18,12 @@ function loadAffectedArea(callback) {
     })
 }
 
+// build the url to retrieve the given layer
 function buildUrl(layerName) {
     return baseUrl + layerEndpoints[layerName] + authentication
 }
 
+// loads a layer and calls the callback with a geojson representation of it
 function loadLayer(layerName, callback) {
     $.ajax({
         url: buildUrl(layerName),
@@ -31,6 +34,8 @@ function loadLayer(layerName, callback) {
     })
 }
 
+// converts the sparql json response to valid geojson that can be inseted into leaflet
+// returns a list of geojson features
 function sparql2GeoJSON(input) {
     var output = [];
     for (i in input) {
@@ -40,10 +45,14 @@ function sparql2GeoJSON(input) {
             geometry: {},
             properties: {}
         };
+        // add the geometry, converted from WKT
         feature.geometry = $.geo.WKT.parse(entry.wkt.value);
+        // the parser does not pars features that have holes in them correctly
         if (feature.geometry.coordinates.length == 0) {
+            // convert these features using our own function
             feature.geometry = manuallyGetGeometry(entry.wkt.value)
         }
+        // other properties of the features
         feature.properties.name = entry.name.value;
         feature.properties.totalVoters = parseInt(entry.total.value);
         feature.properties.yes = parseInt(entry.yes.value);
@@ -69,6 +78,7 @@ function sparql2GeoJSON(input) {
     return output;
 }
 
+// workaround to convert geometries containing holes to geojson
 function manuallyGetGeometry(wkt) {
     var geometry = {
         "type": "Polygon",
