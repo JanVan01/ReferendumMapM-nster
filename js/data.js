@@ -1,6 +1,6 @@
 var baseUrl = 'http://giv-oct.uni-muenster.de:8080/api/dataset/ref_ms';
 var layerEndpoints = {
-  Stadtteile: '_level1',
+  Stadtteile: '_level1_1',
   Kommunalwahlbezirke: '_level2_1',
   Stimmbezirke: '_level3_1'
 }
@@ -86,6 +86,18 @@ function sparql2GeoJSON(input) {
         if(entry.description){
           feature.properties.description = entry.description.value;
         }
+        if(entry.unemployed){
+          feature.properties.unemployed = entry.unemployed.value;
+        }
+        if(entry.households_one_person){
+          feature.properties.households_one_person = entry.households_one_person.value;
+        }
+        if(entry.households_children){
+          feature.properties.households_children = entry.households_children.value;
+        }
+        if(entry.households_migration){
+          feature.properties.households_migration = entry.households_migration.value;
+        }
         output.push(feature);
     }
     return output;
@@ -150,11 +162,13 @@ function onEachFeature(feature, layer) {
     popupContent.push("<b><br/>No votes: </b>" + feature.properties.no)
     popupContent.push("<b><br/>Invalid votes: </b>" + feature.properties.invalid)
     popupContent.push("<b><br/>Participation: </b>" + ((feature.properties.no + feature.properties.yes + feature.properties.invalid)* 100 / feature.properties.totalVoters).toFixed(2)+"%")
-
+    if (feature.properties.unemployed){
+      popupContent.push("<b><br/><br/>Percentage of inhabitants in the age from 15 - 64 that are unemployed:</b></br>"
+                          + feature.properties.unemployed+'%')
+    }
     if (feature.properties.description){
       popupContent.push("<br/><br/><b>Description</b><br/>")
       popupContent.push('<div style="text-align: justify">' + feature.properties.description + '</div>')
-
     }
     layer.bindPopup("<p>" + popupContent.join("") + "</p>");
 
