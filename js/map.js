@@ -58,11 +58,11 @@ map.zoomControl.setPosition('bottomright');
 var layerControl = L.control.layers().addTo(map);
 
 // is called when the user switches to a different layer
-map.on('baselayerchange', function() {
+map.on('baselayerchange', function(event) {
     // brings the affected area to the front
     overlay.bringToFront();
     // shows warning if the chosen layer is the Stimmbezirke layer
-    if (layer.name == 'Stimmbezirke') {
+    if (event.name == 'Stimmbezirke') {
         alert('The dataset for this level of detail of the visualization does not contain any information about letter votes. As a result the shown participation numbers are only based on the number of people who voted in person. Thus the participation numbers apear to be lower compared to the other two layers where the letter votes are included.');
     }
 });
