@@ -34,7 +34,7 @@ function loadLayer(layerName, callback) {
     })
 }
 
-// converts the sparql json response to valid geojson that can be inseted into leaflet
+// converts the sparql json response to valid geojson that can be inserted into leaflet
 // returns a list of geojson features
 function sparql2GeoJSON(input) {
     var output = [];

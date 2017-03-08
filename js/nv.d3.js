@@ -1,3 +1,4 @@
+//Code below is for pie chart functions 
 /* nvd3 version 1.8.5-dev (https://github.com/novus/nvd3) 2016-12-08 */
 (function(){
 

@@ -1,3 +1,5 @@
+
+// The code below in this file is about the implementation of the welcoming window
 L.Control.Window = L.Control.extend({
 
     includes: L.Mixin.Events,
