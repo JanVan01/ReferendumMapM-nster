@@ -2,9 +2,9 @@
 This project was part of an university course called "GI in Society" at the Institute for Geoinformatics at the university of Münster. The courses aim was to create a interactive visualization of an issue relevant to society to provide a better understanding. The data used for the visualization was to be made transformed to Linked Open Data be fore being displayed.
 
 ## ReferendumMapMünster
-Our Projects aim was to design a web interface to displays the results of the referendum that took place in Münster on the 6th of November 2016. The referendum was held to decide on the question whether the shops in the city center of Münster should be opened on two additional Sundays. In Germany shops are generally closed on Sundays and only on special occasions exceptions are made.
-The web interface shows the number of 'yes' votes and the number of 'no' votes. The way the question was worded the 'yes' votes mean shops should remain closed during those events while the 'no' votes mean shops should open on these two special Sundays.
-The areas displayed in green color denote that majority of the people in that area voted in favor of shops remaining closed and vice versa in case of areas being displayed in red color.
+Our Projects aim was to design a web interface to displays the results of the referendum that took place in Münster on the 6th of November 2016. The referendum was held to decide on the question whether the shops in the city center of Münster should be opened on two additional Sundays. In Germany shops are generally closed on Sundays and only on special occasions exceptions are made.  
+The web interface shows the number of 'yes' votes and the number of 'no' votes. The way the question was worded the 'yes' votes mean shops should remain closed during those events while the 'no' votes mean shops should open on these two special Sundays.  
+The areas displayed in green color denote that majority of the people in that area voted in favor of shops remaining closed and vice versa in case of areas being displayed in red color.  
 There are three different layers which represent different district levels of Münster.
 Furthermore, when one of the districts is clicked, a popup showing more detailed information about the district is opened. Additionally, the results are visualized in a pie chart.
 
