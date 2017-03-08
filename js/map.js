@@ -59,8 +59,10 @@ var layerControl = L.control.layers().addTo(map);
 
 // is called when the user switches to a different layer
 map.on('baselayerchange', function(event) {
-    // brings the affected area to the front
-    overlay.bringToFront();
+    // brings the affected area to the front if it's visible
+    if(overlay._map != undefined){
+      overlay.bringToFront();
+    }
     // shows warning if the chosen layer is the Stimmbezirke layer
     if (event.name == 'Stimmbezirke') {
         alert('The dataset for this level of detail of the visualization does not contain any information about letter votes. As a result the shown participation numbers are only based on the number of people who voted in person. Thus the participation numbers apear to be lower compared to the other two layers where the letter votes are included.');
@@ -68,7 +70,7 @@ map.on('baselayerchange', function(event) {
 });
 
 // return the style a feature is displayed in based on its attributes.
-//color and opacity are changes dependent on what the majority voted and the participation
+// color and opacity are changed dependent on what the majority voted and on the participation
 function getStyle(feature) {
     return {
         fillColor: getFillColor(feature),
