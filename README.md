@@ -25,7 +25,7 @@ To host the project on the web just move the directory's content to a location t
 ### Known issues and limitations
 * The dataset for this level of detail of the visualization does not contain any information about letter votes. 
   As a result the shown participation numbers are only based on the number of people who voted in person. 
-  Thus the participation numbers apear to be lower compared to the other two layers where the letter votes are included.
+  Thus the participation numbers appear to be lower compared to the other two layers where the letter votes are included.
   
 ### License
 MIT License
