@@ -21,7 +21,7 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // add sidebar for the content to the map
 L.control.sidebar('sidebar').addTo(map);
 
-// add a welcoming screen that is shown when the user first loads the map explaining the content
+// add a welcoming screen that is shown when the user first loads the map which explaining the content
 L.control.window(map, {
         title: 'Welcome to the Referendum Map Münster',
         maxWidth: 400,
